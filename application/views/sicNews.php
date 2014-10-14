@@ -17,7 +17,7 @@
 	<link href="<?php echo base_url().'css/bootstrap.css';?>" rel="stylesheet">
 
 	<!-- Bootstrap Cuttom CSS -->
-	<link href="<?php echo base_url().'css/shop-homepage.css';?>" rel="stylesheet">
+	<!-- <link href="<?php echo base_url().'css/shop-homepage.css';?>" rel="stylesheet"> -->
 
 	<style type="text/css">
 		body  {
@@ -29,43 +29,62 @@
 </head>
 
 <body >
-	
-
-	<div class="panel panel-default">
-		<div class="panel-heading border-radius" style="height:100px; background-color:#33FF99">Panel heading without title</div>
-		<div class="panel-body" style="height:420px;">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-7 col-sx-3 border-radius" style=" background-color:#33FFFF;height:400px;">.col-md-8</div>
-					<div class="col-md-4 col-md-offset-1 border-radius " style=" background-color:#33FFCC">.col-md-4</div>
-				</div>
-			</div>
-		</div>
-		<div class=" border-radius fixed-bottom" style="height:100px; background-color:#CCFF99">
-			<div class="row">
-			</div>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a><h2></h2></a>
 		</div>
 	</div>
 
-	<!-- Footer -->
-	<div class="container">
+	<!-- Page Content -->
+	<div class="container col-sm-12">
+		<header class="col-sm-13" style="background-color:#ffffff;padding:2px 2px 2px 2px;">
+			<div class="panel panel-info">
+				<div class="panel-heading"><h1><b><marquee>Panel heading without title</marquee></b></h1></div>
+			</div>
+		</header>
+		<!-- Page Heading -->
 		
-		<footer  class="navbar navbar-fixed-bottom"  role="navigation" >
-			<div class="row"><hr/>	
-				<div class="col-md-offset-10">
-					<p>Copyright &copy; Scicence News</p>
+		<!-- Project One -->
+		<div class="row col-sm-12" style="padding: 10px 5px 5px 5px;">
+			<div class="col-md-7">
+				<!-- <video width="320" height="240" controls autoplay> -->
+				<iframe width="420" height="315"
+				src="http://www.youtube.com/embed/XGSy3_Czz8k">
+			</iframe>
+			Your browser does not support the video tag.
+			<!-- s -->
+		</div>
+
+		<div class="row col-md-5">
+			<div class="panel panel-info">
+				<div class="panel-heading"><h1><b>Panel heading without title</b></h1></div>
+				<div class="panel-body">
+					<h2><p>Panel content</p></h2>
 				</div>
 			</div>
-		</footer>
-
+		</div>
 	</div>
+	<!-- /.row -->
+</div>
+<!-- Footer -->
+<div class="container">
+
+	<footer  class="navbar navbar-fixed-bottom"  role="navigation" >
+		<div class="row"><hr/>	
+			<div class="col-md-offset-10">
+				<p>Copyright &copy; Scicence News</p>
+			</div>
+		</div>
+	</footer>
+
+</div>
 
 
-	<!-- jQuery Version 1.11.0 -->
-	<script src="<?php echo base_url().'js/jquery-1.11.0.js';?>"></script>
+<!-- jQuery Version 1.11.0 -->
+<script src="<?php echo base_url().'js/jquery-1.11.0.js';?>"></script>
 
-	<!-- Bootstrap Core JavaScript -->
-	<script src="<?php echo base_url().'js/bootstrap.min.js';?>"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="<?php echo base_url().'js/bootstrap.min.js';?>"></script>
 
 </body>
 
