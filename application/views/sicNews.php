@@ -54,14 +54,28 @@
 			<!-- s -->
 		</div>
 
-		<div class="row col-md-5"><marquee direction="up">
-			<div class="panel panel-info">
-				<div class="panel-heading"><h1><b>Panel heading without title</b></h1></div>
-				<div class="panel-body">
-					<h2><p>Panel content</p></h2>
+		<div class="row col-md-5" style="width:570px;height:460px;">
+			
+				<div class="panel panel-info">
+					<div class="panel-heading"><h1><b>Panel heading without title</b></h1></div>
+					<div class="panel-body">
+						<h2><p>Panel content</p></h2>
+					</div>
 				</div>
-			</div>
-			</marquee>
+				<!-- 1 -->
+				<div class="panel panel-info">
+					<div class="panel-heading"><h1><b>Panel heading without title</b></h1></div>
+					<div class="panel-body">
+						<h2><p>Panel content</p></h2>
+					</div>
+				</div>
+				<!-- 2 -->
+				<div class="panel panel-info">
+					<div class="panel-heading"><h1><b>Panel heading without title</b></h1></div>
+					<div class="panel-body">
+						<h2><p>Panel content</p></h2>
+					</div>
+				</div>
 		</div>
 	</div>
 	<!-- /.row -->
