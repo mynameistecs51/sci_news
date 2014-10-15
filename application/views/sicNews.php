@@ -37,9 +37,9 @@
 
 	<!-- Page Content -->
 	<div class="container col-sm-12">
-		<header class="col-sm-13" style="background-color:#ffffff;padding:2px 2px 2px 2px;">
+		<header class="col-sm-13" style="background-color:#ffffff;">
 			<div class="panel panel-info">
-				<div class="panel-heading"><h1><b><marquee>Panel heading without title</marquee></b></h1></div>
+				<div class="panel-heading"  style="font-size:80px;padding:2px 2px 2px 2px;"><p><b><marquee>คณะวิ้ทยาศาสตร์ มหาวิทยาลัยราภัฎอุดรธานี้</marquee></b></p></div>
 			</div>
 		</header>
 		<!-- Page Heading -->
@@ -48,20 +48,20 @@
 		<div class="row col-sm-12" style="padding: 10px 5px 5px 5px;">
 			<div class="col-md-7">
 				<!-- <video width="320" height="240" controls autoplay> -->
-				<iframe width="420" height="315"
-				src="http://www.youtube.com/embed/XGSy3_Czz8k">
+				<iframe width="700" height="460"
+				src="http://www.youtube.com/embed/XGSy3_Czz8k?rel=0&autoplay=1">
 			</iframe>
-			Your browser does not support the video tag.
 			<!-- s -->
 		</div>
 
-		<div class="row col-md-5">
+		<div class="row col-md-5"><marquee direction="up">
 			<div class="panel panel-info">
 				<div class="panel-heading"><h1><b>Panel heading without title</b></h1></div>
 				<div class="panel-body">
 					<h2><p>Panel content</p></h2>
 				</div>
 			</div>
+			</marquee>
 		</div>
 	</div>
 	<!-- /.row -->
