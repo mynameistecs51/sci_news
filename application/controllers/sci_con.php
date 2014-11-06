@@ -9,7 +9,7 @@ class Sci_con extends CI_Controller{
 		$data = array(
 			'title' => "SCI NEWS",
 			);
-		$this->load->view('sicNews',$data);
+		$this->load->view('index',$data);
 	}
 }
 ?>
