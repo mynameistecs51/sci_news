@@ -88,7 +88,7 @@
 
                         <div class="row">
 
-                            <?php echo form_open_multipart('admin_con/add_detail',' class="form-horizontal" role="form" ');?>
+                            <?php echo form_open_multipart('#',' class="form-horizontal" role="form" ');?>
                             <div class="form-group col-xs-6">
                                 <label for="input_detail" class="col-sm-4 control-label">รายละเอียด </label>
                                 <div class="col-sm-8">
@@ -99,6 +99,16 @@
                                 <label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
                                 <div class="col-sm-8">
                                     <img id="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
+                                   
+
+                                    <div id="uploader_div"></div>
+
+                                    <script type="text/javascript">
+                                        $('#uploader_div').ajaxupload({
+                                            url:'upload.php',
+    bootstrap:true//TELL THE UPLOADER TO ADD boostrap classes
+});
+                                    </script>
                                     <input type="file" id="userfile" class="form-control" name="userfile" size="20" onchange="PreviewImage();" multiple/>
                                 </div>
                             </div>
@@ -107,45 +117,46 @@
                                 <button type="reset" class="btn btn-warning" value="reset">reset</button>
                                 <button type="submit" class="btn btn-success" value="save">save</button>
                             </div>
-                         <?php echo form_close(); ?>
-                    </div>  <!-- --- end class="row col-md-offset-2" --------- -->
-                    <hr>   
+                            <?php echo form_close(); ?>
+                        </div>  <!-- --- end class="row col-md-offset-2" --------- -->
+                        <hr>   
+
+                    </div>
                 </div>
             </div>
+            <!-- /#page-wrapper -->
+
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /#wrapper -->
+        <script type="text/javascript">
 
-    </div>
-    <!-- /#wrapper -->
-<script type="text/javascript">
+            function PreviewImage() {
 
-    function PreviewImage() {
+                var oFReader = new FileReader();
 
-        var oFReader = new FileReader();
+                oFReader.readAsDataURL(document.getElementById("userfile").files[0]);
 
-        oFReader.readAsDataURL(document.getElementById("userfile").files[0]);
+                oFReader.onload = function (oFREvent) {
 
-        oFReader.onload = function (oFREvent) {
+                    document.getElementById("show_pic").src = oFREvent.target.result;
 
-            document.getElementById("show_pic").src = oFREvent.target.result;
+                };
 
-        };
+            } 
 
-    } 
+        </script>
+        <!-- jQuery -->
+        <script src="<?php echo base_url().'js/jquery.js';?>"></script>
 
-</script>
-    <!-- jQuery -->
-    <script src="<?php echo base_url().'js/jquery.js';?>"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="<?php echo base_url().'js/bootstrap.min.js';?>"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url().'js/bootstrap.min.js';?>"></script>
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="<?php echo base_url().'js/plugins/metisMenu/metisMenu.min.js';?>"></script>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<?php echo base_url().'js/plugins/metisMenu/metisMenu.min.js';?>"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="<?php echo base_url().'js/sb-admin-2.js';?>"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="<?php echo base_url().'js/sb-admin-2.js';?>"></script>
+    </body>
 
-</body>
-
-</html>
+    </html>
