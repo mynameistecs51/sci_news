@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title><?php echo $title;?> </title>
-
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url().'file_upload/image/logo_sci.png';?>">  
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'css/bootstrap.min.css';?>" rel="stylesheet">
 
@@ -83,7 +83,7 @@
                 <!-- /.row -->
                 <div class="row">
 
-                    <div class="row  col-md-10 col-md-offset-1 ">
+                    <div class="row  col-md-11 ">
 
 
                         <div class="row">
@@ -99,16 +99,10 @@
                                 <label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
                                 <div class="col-sm-8">
                                     <img id="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
-                                   
 
-                                    <div id="uploader_div"></div>
 
-                                    <script type="text/javascript">
-                                        $('#uploader_div').ajaxupload({
-                                            url:'upload.php',
-    bootstrap:true//TELL THE UPLOADER TO ADD boostrap classes
-});
-                                    </script>
+                                    <div id="uploader_div"></div> <!-- ///////////////-->
+
                                     <input type="file" id="userfile" class="form-control" name="userfile" size="20" onchange="PreviewImage();" multiple/>
                                 </div>
                             </div>
@@ -145,7 +139,6 @@
             } 
 
         </script>
-        <!-- jQuery -->
         <script src="<?php echo base_url().'js/jquery.js';?>"></script>
 
         <!-- Bootstrap Core JavaScript -->
