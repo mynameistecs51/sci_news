@@ -11,7 +11,7 @@
 
 		echo '<div class=" col-sx-8 col-sm-5 " style="word-wrap:break-word; display:block; ">';
 		echo '<div class="panel panel-info">';
-		echo '<div class="panel panel-heading"> <h4>รายละเอียดสินค้า</h></div>';
+		echo '<div class="panel panel-heading"> <h4>'.$row->news_title.'</h></div>';
 		echo '<div class="panel panel-body"><p>';
 						//show detail text
 		echo $row->news_detail;
