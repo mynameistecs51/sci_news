@@ -29,7 +29,7 @@ class Sci_con extends CI_Controller{
 		//$config['encrypt_name'] = TRUE;
 		$config['remove_spaces'] = TRUE;
 		//$file_name =$_FILES['images']['name'];
-		$config['file_name'] = ereg_replace('[[:space:]]+', '', trim($_FILES['images']['name']));
+
 		$this->load->library('upload');
 		$this->upload->initialize($config);
 		foreach ($_FILES['images']['name'] as $key_name => $picture_name) {
@@ -43,7 +43,7 @@ class Sci_con extends CI_Controller{
 		
 	//$config['file_name'] =$name_picture;//----------------file_name
 		if($_FILES['images']){			
-			//$images= $this->_upload_files('images');
+			$images= $this->_upload_files('images');
 		}
 		
 
@@ -51,10 +51,10 @@ class Sci_con extends CI_Controller{
 			'news_id' => "",
 			'news_title' => $input_title,
 			'news_detail' => $input_detail,
-			'news_file_upload' => ereg_replace('[[:space:]]+', '', trim($name_picture)),
+			'news_file_upload' => $name_picture,
 			'news_date' => $date,
 			);
-		print_r($insert)."<br/>";
+		print_r($this->upload->data());
 	//	$this->db->insert('news',$insert);
 		//redirect('sci_con','refresh');
 	}
