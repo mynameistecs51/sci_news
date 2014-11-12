@@ -5,13 +5,13 @@ class Sci_m  extends CI_model {
 		parent::__construct();
 	}
 
-//--------------------function file multi upload-----------------------//
+	//--------------------function file multi upload-----------------------//
 	function _upload_files($field='userfile'){
-
 		$files = array();
 		foreach( $_FILES[$field] as $key => $all )
 			foreach( $all as $i => $val )
 				$files[$i][$key] = $val;
+
 			$files_uploaded = array();
 			for ($i=0; $i < count($files); $i++) { 
 				$_FILES[$field] = $files[$i];
@@ -22,5 +22,5 @@ class Sci_m  extends CI_model {
 			}
 			return $files_uploaded;
 		}
-}
-?>
+	}
+	?>

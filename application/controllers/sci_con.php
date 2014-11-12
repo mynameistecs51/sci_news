@@ -19,20 +19,19 @@ class Sci_con extends CI_Controller{
 		$input_title = $this->input->post('input_title');
 //...
 		$rand = rand(1111,9999);
-		$date= date("Y_m_d");
+		$date= date("Y_m_d_H_i");
 		$name_picture = "";
 		$type_picture ="";
 
 		$config['upload_path'] ='./file_upload/pict_news/';
-		$config['allowed_types'] = 'gif|jpg|png';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= '6144';
 		//$config['encrypt_name'] = TRUE;
-		$config['remove_spaces'] = TRUE;
+		//$config['remove_spaces'] = TRUE;
 		//$file_name =$_FILES['images']['name'];
 		//$config['file_name'] = $date.$rand.$file_name;
-
-
-
+		$this->load->library('upload');
+		 $this->upload->initialize($config);
 		foreach ($_FILES['images']['name'] as $key_name => $picture_name) {
 			foreach ($_FILES['images']['type'] as $key_type => $picture_type){
 			//ไม่มีอะไรให้มัข้างไปแสดงใน foreach$_FILES['images']['name'] เลย
@@ -41,22 +40,43 @@ class Sci_con extends CI_Controller{
 			$type_picture .=$picture_type.",";
 		}
 
+		
 	//$config['file_name'] =$name_picture;//----------------file_name
-
-		$this->load->library('upload',$config);
-		$images= $this->sci_m->_upload_files('images');
+		if($_FILES['images']){			
+			$images= $this->_upload_files('images');
+		}
+		
 
 		$insert = array(
 			'news_id' => "",
 			'news_title' => $input_title,
 			'news_detail' => $input_detail,
 			'news_file_upload' => $name_picture,
-			'news_date' => NOW(),
+			'news_date' => $date,
 			);
 
-		print_r($insert);
+		//print_r($insert);
+		echo "<br/>";
+		print_r($this->upload->data());
 		//$this->db->insert('detail',$insert);
 	//	redirect('admin_con/profile_ago/'.$page,'refresh');
 	}
-}
-?>
+
+	private function _upload_files($field='userfile'){
+		$files = array();
+		foreach( $_FILES[$field] as $key => $all )
+			foreach( $all as $i => $val )
+				$files[$i][$key] = $val;
+
+			$files_uploaded = array();
+			for ($i=0; $i < count($files); $i++) { 
+				$_FILES[$field] = $files[$i];
+				if ($this->upload->do_upload($field))
+					$files_uploaded[$i] = $this->upload->data($files);
+				else
+					$files_uploaded[$i] = null;
+			}
+			return $files_uploaded;
+		}
+	}
+	?>

@@ -2,13 +2,15 @@
 
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="<?php echo base_url()?>js/site.js"></script>
+    <script src="<?php echo base_url()?>js/ajaxfileupload.js"></script>
 <script type="text/javascript">
 
     function PreviewImage() {
 
         var oFReader = new FileReader();
 
-        oFReader.readAsDataURL(document.getElementById("images[]").files[]);
+        oFReader.readAsDataURL(document.getElementById("userfile").files[]);
 
         oFReader.onload = function (oFREvent) {
 
@@ -51,7 +53,7 @@
                     <label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
                     <div class="col-sm-8">
                         <img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
-                        <input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple/>
+                        <input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>
                     </div>
                 </div>
 
