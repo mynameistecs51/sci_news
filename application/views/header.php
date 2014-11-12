@@ -66,9 +66,13 @@
                             <li>
                                 <?php echo anchor( 'sci_con','<i class="glyphicon glyphicon-picture"></i> เพิ่มข้อมูลรูปภาพ','class="active"');?>
                             </li>
+                            <li>
+                                <?php echo anchor('sci_con/list_news','<i class="glyphicon glyphicon-th-list"></i> รายการข่าว','class="active"');?>
+                            </li>
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->
                 </div>
                 <!-- /.navbar-static-side -->
             </nav>
+        <div id="page-wrapper">

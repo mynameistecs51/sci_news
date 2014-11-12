@@ -26,12 +26,12 @@ class Sci_con extends CI_Controller{
 		$config['upload_path'] ='./file_upload/pict_news/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
 		$config['max_size']	= '6144';
-		//$config['encrypt_name'] = TRUE;
-		//$config['remove_spaces'] = TRUE;
+		$config['encrypt_name'] = TRUE;
+		$config['remove_spaces'] = TRUE;
 		//$file_name =$_FILES['images']['name'];
 		//$config['file_name'] = $date.$rand.$file_name;
 		$this->load->library('upload');
-		 $this->upload->initialize($config);
+		$this->upload->initialize($config);
 		foreach ($_FILES['images']['name'] as $key_name => $picture_name) {
 			foreach ($_FILES['images']['type'] as $key_type => $picture_type){
 			//ไม่มีอะไรให้มัข้างไปแสดงใน foreach$_FILES['images']['name'] เลย
@@ -55,11 +55,8 @@ class Sci_con extends CI_Controller{
 			'news_date' => $date,
 			);
 
-		//print_r($insert);
-		echo "<br/>";
-		print_r($this->upload->data());
-		//$this->db->insert('detail',$insert);
-	//	redirect('admin_con/profile_ago/'.$page,'refresh');
+		$this->db->insert('news',$insert);
+		redirect('sci_con','refresh');
 	}
 
 	private function _upload_files($field='userfile'){
@@ -77,6 +74,16 @@ class Sci_con extends CI_Controller{
 					$files_uploaded[$i] = null;
 			}
 			return $files_uploaded;
+		}
+
+		//-----------------show list news-------------------//
+		public function list_news(){
+			$data = array(
+				'title' => "รายการข่าวทั้งหมด",
+				'show_news' => $this->sci_m->get_news(),
+			);
+
+			$this->load->view('list_news',$data);
 		}
 	}
 	?>
