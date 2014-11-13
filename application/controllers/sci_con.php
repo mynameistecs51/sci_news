@@ -25,7 +25,7 @@ class Sci_con extends CI_Controller{
 
 		$config['upload_path'] ='./file_upload/pict_news/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$config['max_size']	= '7000';
+		$config['max_size']	= '70000';
 		//$config['encrypt_name'] = TRUE;
 		//$config['remove_spaces'] = TRUE;
 		//$file_name =$_FILES['images']['name'];
@@ -48,8 +48,6 @@ class Sci_con extends CI_Controller{
 			# code...
 				$name_picture .=$value['file_name'].",";		//------------./ show list name picture./---------//
 			}
-		}
-		
 
 		$insert = array(
 			'news_id' => "",
@@ -58,9 +56,12 @@ class Sci_con extends CI_Controller{
 			'news_file_upload' => substr($name_picture,0,-1),
 			'news_date' => $date,
 			);
-		//var_dump($this->upload->data());
 		$this->db->insert('news',$insert);
 		redirect('sci_con','refresh');
+		}		
+
+		var_dump($this->upload->data());
+		
 	}
 
 	private function _upload_files($field='userfile'){
