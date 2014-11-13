@@ -25,25 +25,29 @@ class Sci_con extends CI_Controller{
 
 		$config['upload_path'] ='./file_upload/pict_news/';
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$config['max_size']	= '6144';
+		$config['max_size']	= '7000';
 		//$config['encrypt_name'] = TRUE;
-		$config['remove_spaces'] = TRUE;
+		//$config['remove_spaces'] = TRUE;
 		//$file_name =$_FILES['images']['name'];
 
 		$this->load->library('upload');
 		$this->upload->initialize($config);
-		foreach ($_FILES['images']['name'] as $key_name => $picture_name) {
-			foreach ($_FILES['images']['type'] as $key_type => $picture_type){
-			//ไม่มีอะไรให้มัข้างไปแสดงใน foreach$_FILES['images']['name'] เลย
-			}
-			$name_picture .= $picture_name .",";
-			$type_picture .=$picture_type.",";
-		}
+		// foreach ($_FILES['images']['name'] as $key_name => $picture_name) {
+		// 	foreach ($_FILES['images']['type'] as $key_type => $picture_type){
+		// 	//ไม่มีอะไรให้มัข้างไปแสดงใน foreach$_FILES['images']['name'] เลย
+		// 	}
+		// 	$name_picture .= $picture_name .",";
+		// 	$type_picture .=$picture_type.",";
+		// }
 
 		
 	//$config['file_name'] =$name_picture;//----------------file_name
 		if($_FILES['images']){			
 			$images= $this->_upload_files('images');
+			foreach ($images as $key => $value) {
+			# code...
+				$name_picture .=$value['file_name'].",";		//------------./ show list name picture./---------//
+			}
 		}
 		
 
@@ -51,12 +55,12 @@ class Sci_con extends CI_Controller{
 			'news_id' => "",
 			'news_title' => $input_title,
 			'news_detail' => $input_detail,
-			'news_file_upload' => $name_picture,
+			'news_file_upload' => substr($name_picture,0,-1),
 			'news_date' => $date,
 			);
-		print_r($this->upload->data());
-	//	$this->db->insert('news',$insert);
-		//redirect('sci_con','refresh');
+		//var_dump($this->upload->data());
+		$this->db->insert('news',$insert);
+		redirect('sci_con','refresh');
 	}
 
 	private function _upload_files($field='userfile'){
@@ -81,7 +85,7 @@ class Sci_con extends CI_Controller{
 			$data = array(
 				'title' => "รายการข่าวทั้งหมด",
 				'show_news' => $this->sci_m->get_news(),
-			);
+				);
 
 			$this->load->view('list_news',$data);
 		}
