@@ -90,5 +90,9 @@ class Sci_con extends CI_Controller{
 
 			$this->load->view('list_news',$data);
 		}
+
+		public function index_html(){
+			$this->load->view('index.html');
+		}
 	}
 	?>
