@@ -92,7 +92,11 @@ class Sci_con extends CI_Controller{
 		}
 
 		public function index_html(){
-			$this->load->view('index.html');
+			$data = array(
+				'title' => "รายการข่าวทั้งหมด",
+				'show_news' => $this->sci_m->get_news(),
+				);
+			$this->load->view('picture',$data);
 		}
 	}
 	?>
