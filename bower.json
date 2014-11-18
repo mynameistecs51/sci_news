@@ -15,7 +15,7 @@
 	"ignore": [
     	"**/.*",
     	"fancybox.jquery.json",
-    	"demo"
+    	"sci_news"
 	],
 	"dependencies": {
 		"jquery": ">=1.10",

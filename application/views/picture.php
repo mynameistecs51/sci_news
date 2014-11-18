@@ -46,7 +46,7 @@
 		}
 
 		body {
-			max-width: 10px;
+			max-width: 700px;
 			margin: 0 auto;
 		}
 	</style>
@@ -55,12 +55,13 @@
 	<p>
 		<?php 
 		foreach ($show_news as $detail => $row) 	{
+			
 			$picture_name_array = explode(',', $row->news_file_upload);
 			foreach ($picture_name_array as $key => $value_detail) { //show picture 
 			
 				?>
 				<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>" data-fancybox-group="gallery" title="<?php echo $row->news_title;?>">
-					<img src="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>" alt="" />
+					<img src="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>" alt="" style="width:128px;"/>
 				</a>
 				<?php
 			}
