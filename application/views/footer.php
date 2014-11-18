@@ -1,23 +1,7 @@
             </div>
         </div>
         <!-- /#wrapper -->
-        <script type="text/javascript">
-
-            function PreviewImage() {
-
-                var oFReader = new FileReader();
-
-                oFReader.readAsDataURL(document.getElementById("userfile").files[0]);
-
-                oFReader.onload = function (oFREvent) {
-
-                    document.getElementById("show_pic").src = oFREvent.target.result;
-
-                };
-
-            } 
-
-        </script>
+      
         <script src="<?php echo base_url().'js/jquery.js';?>"></script>
 
         <!-- Bootstrap Core JavaScript -->

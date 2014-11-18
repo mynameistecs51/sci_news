@@ -36,30 +36,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <!-- ////////////---------show slide picture -->
-
-    <!-- Add jQuery library -->
-    <script type="text/javascript" src="<?php echo base_url().'js/jquery-1.10.2.min.js';?>"></script>
-
-    <!-- Add mousewheel plugin (this is optional) -->
-    <script type="text/javascript" src="<?php echo base_url().'js/jquery.mousewheel.pack.js?v=3.1.3';?>"></script>
-
-    <!-- Add fancyBox main JS and CSS files -->
-    <script type="text/javascript" src="<?php echo base_url().'source/jquery.fancybox.pack.js?v=2.1.5';?>"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'source/jquery.fancybox.css?v=2.1.5';?>" media="screen" />
-
-    <!-- Add Button helper (this is optional) -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'source/helpers/jquery.fancybox-buttons.css?v=1.0.5';?>" />
-    <script type="text/javascript" src="<?php echo base_url().'source/helpers/jquery.fancybox-buttons.js?v=1.0.5';?>"></script>
-
-    <!-- Add Thumbnail helper (this is optional) -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'source/helpers/jquery.fancybox-thumbs.css?v=1.0.7';?>" />
-    <script type="text/javascript" src="<?php echo base_url().'source/helpers/jquery.fancybox-thumbs.js?v=1.0.7';?>"></script>
-
-    <!-- Add Media helper (this is optional) -->
-    <script type="text/javascript" src="<?php echo base_url().'source/helpers/jquery.fancybox-media.js?v=1.0.6';?>"></script>
-
-        <!-- ./end show slide picture -->
     </head>
 
     <body>

@@ -2,15 +2,13 @@
 
 <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<script src="<?php echo base_url()?>js/site.js"></script>
-<script src="<?php echo base_url()?>js/ajaxfileupload.js"></script>
 <script type="text/javascript">
 
     function PreviewImage() {
 
         var oFReader = new FileReader();
 
-        oFReader.readAsDataURL(document.getElementById("userfile").files[]);
+        oFReader.readAsDataURL(document.getElementById("images[]").files[0]);
 
         oFReader.onload = function (oFREvent) {
 
