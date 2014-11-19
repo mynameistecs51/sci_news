@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2014 at 02:13 PM
+-- Generation Time: Nov 19, 2014 at 07:57 AM
 -- Server version: 5.5.39
 -- PHP Version: 5.4.31
 
@@ -32,14 +32,15 @@ CREATE TABLE IF NOT EXISTS `news` (
   `news_detail` text NOT NULL,
   `news_file_upload` text NOT NULL,
   `news_date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`news_id`, `news_title`, `news_detail`, `news_file_upload`, `news_date`) VALUES
-(1, 'd', 'd', 'WP_20141025_015.jpg', '2014-11-13 11:23:00');
+(2, 'test', 'test detail', 'WP_25571025_12_51_11_Pro_1.jpg,WP_25571025_12_52_04_Pro_3.jpg', '2014-11-18 08:41:00'),
+(3, 'test1', 'test1', 'WP_25571025_11_46_02_Pro_1.jpg,WP_25571025_11_46_09_Pro_1.jpg,WP_25571025_11_46_16_Pro_1.jpg', '2014-11-18 10:49:00');
 
 -- --------------------------------------------------------
 
@@ -77,7 +78,7 @@ ALTER TABLE `pict_news`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `pict_news`
 --
