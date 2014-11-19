@@ -71,11 +71,13 @@
 								</a>
 								<?php
 							}
-						}
-						?>
-					</p>
-					<hr/>
-				</tbody>			
-			</div>  <!-- ./ end   class=" col-sx-8 col-sm-10" style="word-wrap:break-word; display:block;  -->
+							?>
+						</p>
+						<hr/>
+					</tbody>			
+				</div>  <!-- ./ end   class=" col-sx-8 col-sm-10" style="word-wrap:break-word; display:block;  -->
+				<?php
+			}
+			?>
 		</div>
 		<?php $this->load->view('footer');?>
