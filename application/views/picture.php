@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>picture news lightbox</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-	<!-- Add jQuery library -->
-	<script type="text/javascript" src="<?php echo base_url().'js/jquery-1.10.2.min.js';?>"></script>
-
-	<!-- Add mousewheel plugin (this is optional) -->
-	<script type="text/javascript" src="<?php echo base_url().'js/jquery.mousewheel.pack.js?v=3.1.3';?>"></script>
-
-	<!-- Add fancyBox main JS and CSS files -->
-	<script type="text/javascript" src="<?php echo base_url().'source/jquery.fancybox.pack.js?v=2.1.5';?>"></script>
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url().'source/jquery.fancybox.css?v=2.1.5';?>" media="screen" />
+<?php $this->load->view('header');?>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -45,13 +31,14 @@
 			box-shadow: 0 0 50px #222;
 		}
 
-		body {
+		tbody {
 			max-width: 700px;
 			margin: 0 auto;
 		}
 	</style>
-</head>
-<body>
+
+
+<tbody>
 	<p>
 		<?php 
 		foreach ($get_news_id as $detail => $row) 	{
@@ -68,6 +55,5 @@
 		}
 		?>
 	</p>
-
-</body>
-</html>
+</tbody>
+<?php $this->load->view('footer');?>

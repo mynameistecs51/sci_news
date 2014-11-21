@@ -10,6 +10,18 @@
 
     <title><?php echo $title;?> </title>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url().'image/pict_admin/logo_sci.png';?>">  
+  
+    <!-- JS Light box -->
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="<?php echo base_url().'js/jquery-1.10.2.min.js';?>"></script>
+
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="<?php echo base_url().'js/jquery.mousewheel.pack.js?v=3.1.3';?>"></script>
+
+    <!-- Add fancyBox main JS and CSS files -->
+    <script type="text/javascript" src="<?php echo base_url().'source/jquery.fancybox.pack.js?v=2.1.5';?>"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'source/jquery.fancybox.css?v=2.1.5';?>" media="screen" />
+    <!-- ./end js lightbox -->
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'css/bootstrap.min.css';?>" rel="stylesheet">
 

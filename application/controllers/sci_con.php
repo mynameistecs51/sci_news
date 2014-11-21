@@ -17,7 +17,7 @@ class Sci_con extends CI_Controller{
 	public function do_upload(){	
 		$input_detail = $this->input->post('input_detail');
 		$input_title = $this->input->post('input_title');
-//...
+
 		$rand = rand(1111,9999);
 		$date= date("Y_m_d_H_i");
 		$name_picture = "";
@@ -49,15 +49,15 @@ class Sci_con extends CI_Controller{
 				$name_picture .=$value['file_name'].",";		//------------./ show list name picture./---------//
 			}
 
-		$insert = array(
-			'news_id' => "",
-			'news_title' => $input_title,
-			'news_detail' => $input_detail,
-			'news_file_upload' => substr($name_picture,0,-1),
-			'news_date' => $date,
-			);
-		$this->db->insert('news',$insert);
-		redirect('sci_con','refresh');
+			$insert = array(
+				'news_id' => "",
+				'news_title' => $input_title,
+				'news_detail' => $input_detail,
+				'news_file_upload' => substr($name_picture,0,-1),
+				'news_date' => $date,
+				);
+			$this->db->insert('news',$insert);
+			redirect('sci_con','refresh');
 		}		
 
 		var_dump($this->upload->data());
@@ -70,41 +70,44 @@ class Sci_con extends CI_Controller{
 			foreach( $all as $i => $val )
 				$files[$i][$key] = $val;
 
-			$files_uploaded = array();
-			for ($i=0; $i < count($files); $i++) { 
-				$_FILES[$field] = $files[$i];
-				if ($this->upload->do_upload($field))
-					$files_uploaded[$i] = $this->upload->data($files);
-				else
-					$files_uploaded[$i] = null;
-			}
-			return $files_uploaded;
+		$files_uploaded = array();
+		for ($i=0; $i < count($files); $i++) { 
+			$_FILES[$field] = $files[$i];
+			if ($this->upload->do_upload($field))
+				$files_uploaded[$i] = $this->upload->data($files);
+			else
+				$files_uploaded[$i] = null;
 		}
+		return $files_uploaded;
+	}
 
 		//-----------------show list news-------------------//
-		public function list_news(){
-			$data = array(
-				'title' => "รายการข่าวทั้งหมด",
-				'show_news' => $this->sci_m->get_news(),
-				);
-
-			$this->load->view('list_news',$data);
-		}
-
-		public function index_html(){
-			$data = array(
-				'title' => "รายการข่าวทั้งหมด",
-				'show_news' => $this->sci_m->get_news(),
-				);
-			$this->load->view('picture',$data);
-		}
-
-		public function show_news($news_id){
-			$data = array(
-				'title' => "news detail",
-				'get_news_id' => $this->sci_m->get_news_id($news_id),
+	public function list_news(){
+		$data = array(
+			'title' => "รายการข่าวทั้งหมด",
+			'show_news' => $this->sci_m->get_news(),
 			);
-			$this->load->view('picture',$data);
-		}
+
+		$this->load->view('list_news',$data);
 	}
-	?>
+
+		// public function index_html(){
+		// 	$data = array(
+		// 		'title' => "รายการข่าวทั้งหมด",
+		// 		'show_news' => $this->sci_m->get_news(),
+		// 		);
+		// 	$this->load->view('picture',$data);
+		// }
+	public function show_index(){
+		$this->load->view('index');
+	}
+
+	public function show_news($news_id){
+		$data = array(
+			'title' => "news detail",
+			'get_news_id' => $this->sci_m->get_news_id($news_id),
+			);
+		$this->load->view('picture',$data);
+	}
+}
+?>
