@@ -7,7 +7,7 @@
 				<th>#</th>
 				<th   style="text-align:center;" >หัวข้อข่าว</th>
 				<th>ภาพ</th>
-				<th>ว/ด/ป</th>
+				<th>ว/ด/ป ที่อัพเดท</th>
 				<th>edit delete</th>
 			</tr>
 		</thead>
