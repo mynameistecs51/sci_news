@@ -20,32 +20,31 @@
 						#
 					</td>
 					<td width=400px>
-					<?php echo $row->news_title;	?>	<!-- //โชว์ รายละเอียด  -->
-				</td>
-				<td>
-					<?php 
-					$picture_name_array = explode(',', $row->news_file_upload);
+						<?php echo $row->news_title;	?>	<!-- //โชว์ รายละเอียด  -->
+					</td>
+					<td>
+						<?php 
+						$picture_name_array = explode(',', $row->news_file_upload);
 							 //show picture 
-								?>
-								<img src="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[0];?>" alt="" style="width:128px;"/>	<!-- //โชว์รูปภาพ -->
-								<?php 
-							
-							?>
-						</td>
-						<td>
-							<?php 	echo $row->news_date; ?>		<!-- //โชว์กลุ่ม -->
-						</td>
-						<td>
-							<?php 
-							echo anchor('sci_con/','แก้ไข  ','&nbsp;&nbsp;');
-							echo anchor('sci_con/','ลบ	');
-							?>
-						</td>
-					</tr>
-					<?php
-				}
-				?>
-			</tbody>
-		</table>	
-	</div>
-	<?php $this->load->view('footer');?>
+						?>
+						<img src="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[0];?>" alt="" style="width:128px;height:90px;"/>	<!-- //โชว์รูปภาพ -->
+						<?php 
+
+						?>
+					</td>
+					<td>
+						<?php 	echo $row->news_date; ?>		<!-- //โชว์กลุ่ม -->
+					</td>
+					<td>
+						<?php 
+						echo anchor('sci_con/show_news/'.$row->news_id,"ดูลายละเอียด");
+						?>
+					</td>
+				</tr>
+				<?php	
+			}
+			?>
+		</tbody>
+	</table>	
+</div>
+<?php $this->load->view('footer');?>

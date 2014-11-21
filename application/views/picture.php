@@ -54,7 +54,7 @@
 <body>
 	<p>
 		<?php 
-		foreach ($show_news as $detail => $row) 	{
+		foreach ($get_news_id as $detail => $row) 	{
 			
 			$picture_name_array = explode(',', $row->news_file_upload);
 			foreach ($picture_name_array as $key => $value_detail) { //show picture 

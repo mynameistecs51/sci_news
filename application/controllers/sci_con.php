@@ -98,5 +98,13 @@ class Sci_con extends CI_Controller{
 				);
 			$this->load->view('picture',$data);
 		}
+
+		public function show_news($news_id){
+			$data = array(
+				'title' => "news detail",
+				'get_news_id' => $this->sci_m->get_news_id($news_id),
+			);
+			$this->load->view('picture',$data);
+		}
 	}
 	?>
