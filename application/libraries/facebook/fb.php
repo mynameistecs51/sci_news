@@ -1,64 +1,69 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if (!defined('BASEPATH'))
+	exit('No direct script access allowed');
 
-class fb{
+//include the facebook.php from libraries directory
+require_once APPPATH . 'libraries/facebook/facebook.php';
 
-	public function __construct()
-	{
-		$this->CI = get_instance();
-		$this->CI->config->load("facebook",TRUE);
-		$config = $this->CI->config->item('facebook');
-		$this->CI->load->library('facebook', $config);
+class Fb extends CI_Controller {
+	
+	public function __construct() {
+		parent::__construct();
+		$this->config->load('config_facebook');
 	}
 	
-	public function initialize()
-	{
-		?>
-        <script>
-      	window.fbAsyncInit = function() {
-			FB.init({
-			  appId: '<?php echo $this->CI->facebook->getAppID() ?>',
-			  cookie: true,
-			  xfbml: true,
-			  oauth: true
-			});
-			FB.Event.subscribe('auth.login', function(response) {
-			  window.location.reload();
-			});
-			FB.Event.subscribe('auth.logout', function(response) {
-			  window.location.reload();
-			});
-			};
-			
-		  (function() {
-			var e = document.createElement('script'); e.async = true;
-			e.src = document.location.protocol +
-			  '//connect.facebook.net/en_US/all.js';
-			document.getElementById('fb-root').appendChild(e);
-		  }());
-    	</script>
-        <?
-		$user = $this->CI->facebook->getUser();
-		if($user)
-		{
-			$user_profile = $this->CI->facebook->api('/me');
-		}
-		return $user_profile;
+	public function index() {
+		$this->load->view('head');
+		$this->load->view('fb');
+		$this->load->view('footer');
 	}
 	
-	public function createLoginLink()
-	{
-		$login_params = array(
-		'scope' => 'email',
-		'display' => 'popup'
-		);
-		return $url = $this->CI->facebook->getLoginUrl($login_params); 
-	}
-	
-	public function facebookLogout($data="")
-	{
-		$this->CI->facebook->destroySession();
-	}
-	
-		
+	public function logout() {
+		$signed_request_cookie = 'fbsr_' . $this->config->item('appID');
+		setcookie($signed_request_cookie, '', time() - 3600, "/");
+$this->session->sess_destroy();  //session destroy
+redirect('/fb/index', 'refresh');  //redirect to the home page
 }
-?>
+
+public function fblogin() {
+	
+	$facebook = new Facebook(array(
+		'appId' => $this->config->item('appID'),
+		'secret' => $this->config->item('appSecret'),
+		));
+// We may or may not have this data based on whether the user is logged in.
+// If we have a $user id here, it means we know the user is logged into
+// Facebook, but we don't know if the access token is valid. An access
+// token is invalid if the user logged out of Facebook.
+$user = $facebook->getUser(); // Get the facebook user id
+$profile = NULL;
+$logout = NULL;
+
+if ($user) {
+	try {
+$profile = $facebook->api('/me');  //Get the facebook user profile data
+$access_token = $facebook->getAccessToken();
+$params = array('next' => base_url('fb/logout/'), 'access_token' => $access_token);
+$logout = $facebook->getLogoutUrl($params);
+
+} catch (FacebookApiException $e) {
+	error_log($e);
+	$user = NULL;
+}
+
+$data['user_id'] = $user;
+$data['name'] = $profile['name'];
+$data['logout'] = $logout;
+$this->session->set_userdata($data);
+redirect('/fb/test');
+}
+}
+
+public function test() {
+	$this->load->view('test');
+}
+
+}
+
+/* End of file fb.php */
+/* Location: ./application/controllers/fb.php */

@@ -94,6 +94,7 @@
       if(!response.session) {
         // user is now logged out
         window.location = getRootPath() + 'http://localhost/sci_news/index.php/sci_con';
+        
         return;
       }
     }
@@ -108,8 +109,8 @@
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-<!-- <button onclick="javascript:FB.logout();">Logout from Facebook</button>
-<p id="show_logout"></p> -->
+<button onclick="javascript:FB.logout();">Logout from Facebook</button>
+
 <div id="status">
 
 </div>
