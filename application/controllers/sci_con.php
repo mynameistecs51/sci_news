@@ -109,5 +109,9 @@ class Sci_con extends CI_Controller{
 			);
 		$this->load->view('picture',$data);
 	}
+
+	public function facebook_login(){
+		$this->load->view('facebook.html');
+	}
 }
 ?>
