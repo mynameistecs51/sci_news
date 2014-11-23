@@ -57,11 +57,10 @@ class Sci_con extends CI_Controller{
 				'news_date' => $date,
 				);
 			$this->db->insert('news',$insert);
-			redirect('sci_con','refresh');
-		}		
-
-		var_dump($this->upload->data());
-		
+			redirect('sci_con/list_news/','refresh');
+		}else{
+		echo "Can't Select Picture";
+		}
 	}
 
 	private function _upload_files($field='userfile'){

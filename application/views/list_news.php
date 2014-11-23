@@ -8,7 +8,7 @@
 				<th   style="text-align:center;" >หัวข้อข่าว</th>
 				<th>ภาพ</th>
 				<th>ว/ด/ป ที่อัพเดท</th>
-				<th>edit delete</th>
+				<th>รายละเอียด</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,7 +37,7 @@
 					</td>
 					<td>
 						<?php 
-						echo anchor('sci_con/show_news/'.$row->news_id,"ดูลายละเอียด");
+						echo anchor('sci_con/show_news/'.$row->news_id,"<div class='btn btn-info'>ดูข้อมูล</div>");
 						?>
 					</td>
 				</tr>
