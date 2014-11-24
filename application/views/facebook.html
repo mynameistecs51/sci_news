@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
+  <title>Facebook Login JavaScript Example</title>
+  <meta charset="UTF-8">
 </head>
 <body>
-<script>
+  <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -20,12 +20,12 @@
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+      'into Facebook.';
     }
   }
 
@@ -39,9 +39,9 @@
   }
 
   window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '1540389822873045',
-    secret      : "fcc6b258011208a7422fc4ea5d47524d", 
+    FB.init({
+      appId      : '1540389822873045',
+      secret      : "fcc6b258011208a7422fc4ea5d47524d", 
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -64,14 +64,14 @@
     statusChangeCallback(response);
   });
 
-  };
+};
 
   // Load the SDK asynchronously
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+    js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&appId=1540389822873045&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
@@ -82,7 +82,7 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'ชื่อ facebook login, ' + response.name +"<br/>Email:"+response.email+"<br/>ชื่อ:"+response.first_name+"<br/>สกุล:"+response.last_name;
+      'ชื่อ facebook login, ' + response.name +"<br/>Email:"+response.email+"<br/>ชื่อ:"+response.first_name+"<br/>สกุล:"+response.last_name+"<br/>userid: "+response.id+"<br/> locale:"+response.locale+"<br/>verified:"+response.verified+"<br/>gender:"+response.gender;
     });
   }
 </script>
@@ -93,8 +93,7 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
 
 <div id="status">
 </div>
