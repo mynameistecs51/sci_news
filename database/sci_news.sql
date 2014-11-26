@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 23, 2014 at 04:00 PM
--- Server version: 5.5.39
--- PHP Version: 5.4.31
+-- Host: localhost
+-- Generation Time: Nov 26, 2014 at 01:01 AM
+-- Server version: 5.6.21
+-- PHP Version: 5.5.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `news_detail` text NOT NULL,
   `news_file_upload` text NOT NULL,
   `news_date` datetime NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news`
@@ -47,14 +47,17 @@ INSERT INTO `news` (`news_id`, `news_title`, `news_detail`, `news_file_upload`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pict_news`
+-- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `pict_news` (
-`pict_id` int(11) NOT NULL,
-  `pict_name` text NOT NULL,
-  `pict_detail` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `user_facebook_id` int(100) NOT NULL,
+  `user_first_name` varchar(100) NOT NULL,
+  `user_last_name` varchar(100) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `user_gender` enum('male','female') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -67,10 +70,10 @@ ALTER TABLE `news`
  ADD PRIMARY KEY (`news_id`);
 
 --
--- Indexes for table `pict_news`
+-- Indexes for table `user`
 --
-ALTER TABLE `pict_news`
- ADD PRIMARY KEY (`pict_id`);
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -81,11 +84,6 @@ ALTER TABLE `pict_news`
 --
 ALTER TABLE `news`
 MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `pict_news`
---
-ALTER TABLE `pict_news`
-MODIFY `pict_id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
