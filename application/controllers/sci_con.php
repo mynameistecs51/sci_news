@@ -59,7 +59,7 @@ class Sci_con extends CI_Controller{
 			$this->db->insert('news',$insert);
 			redirect('sci_con/list_news/','refresh');
 		}else{
-		echo "Can't Select Picture";
+			echo "Can't Select Picture";
 		}
 	}
 
@@ -69,26 +69,26 @@ class Sci_con extends CI_Controller{
 			foreach( $all as $i => $val )
 				$files[$i][$key] = $val;
 
-		$files_uploaded = array();
-		for ($i=0; $i < count($files); $i++) { 
-			$_FILES[$field] = $files[$i];
-			if ($this->upload->do_upload($field))
-				$files_uploaded[$i] = $this->upload->data($files);
-			else
-				$files_uploaded[$i] = null;
+			$files_uploaded = array();
+			for ($i=0; $i < count($files); $i++) { 
+				$_FILES[$field] = $files[$i];
+				if ($this->upload->do_upload($field))
+					$files_uploaded[$i] = $this->upload->data($files);
+				else
+					$files_uploaded[$i] = null;
+			}
+			return $files_uploaded;
 		}
-		return $files_uploaded;
-	}
 
 		//-----------------show list news-------------------//
-	public function list_news(){
-		$data = array(
-			'title' => "รายการข่าวทั้งหมด",
-			'show_news' => $this->sci_m->get_news(),
-			);
+		public function list_news(){
+			$data = array(
+				'title' => "รายการข่าวทั้งหมด",
+				'show_news' => $this->sci_m->get_news(),
+				);
 
-		$this->load->view('list_news',$data);
-	}
+			$this->load->view('list_news',$data);
+		}
 
 		// public function index_html(){
 		// 	$data = array(
@@ -97,20 +97,58 @@ class Sci_con extends CI_Controller{
 		// 		);
 		// 	$this->load->view('picture',$data);
 		// }
-	public function show_index(){
-		$this->load->view('index');
-	}
+		public function show_index(){
+			$this->load->view('index');
+		}
 
-	public function show_news($news_id){
-		$data = array(
-			'title' => "news detail",
-			'get_news_id' => $this->sci_m->get_news_id($news_id),
-			);
-		$this->load->view('picture',$data);
-	}
+		public function show_news($news_id){
+			$data = array(
+				'title' => "news detail",
+				'get_news_id' => $this->sci_m->get_news_id($news_id),
+				);
+			$this->load->view('picture',$data);
+		}
 
-	public function facebook_login(){
-		$this->load->view('facebook.html');
+		public function facebook_login(){
+			$this->load->view('facebook.html');
+		}
+
+		//-------- account for facebook login --------//
+		function account()
+		{
+			$fb_data = $this->session->userdata('fb_data');
+
+			if((!$fb_data['user_facebook_id']) or (!$fb_data['me']))
+			{
+
+				redirect('sci_con/index');
+			}
+			else if($this->Facebook_model->id_check($fb_data['me']['id']) < 0 )
+			{
+				$query = array(
+					'user_id' => "",
+					'user_facebook_id' => $fb_data['me']['id'],
+					'user_first_name' => $fb_data['me']['first_name'],
+					'user_last_name' => $fb_data['me']['last_name'],
+					'user_email' => $fb_data['me']['email'],
+					'user_gender' => $fb_data['me']['gender'],
+					);
+
+				//$this->db->insert('users',$query); 
+				pirnt_r($query);
+
+			}
+			else
+			{
+
+				$data = array(
+					'title' => "SCIENCE NEWS",
+					'fb_data' => $fb_data,
+
+					);
+				$this->load->view('admin/index',$data);
+			}
+
+		} 
 	}
-}
-?>
+	?>
