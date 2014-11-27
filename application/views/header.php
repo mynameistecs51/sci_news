@@ -124,12 +124,16 @@
                 // Here we run a very simple test of the Graph API after login is
                 // successful.  See statusChangeCallback() for when this call is made.
                 function testAPI() {
-                    console.log('Welcome!  Fetching your information.... ');
+                    //console.log('Welcome!  Fetching your information.... ');
                     FB.api('/me', function(response) {
                         console.log('Successful login for: ' + response.name);
+                       // window.location.href="index.php/sci_con/facebook_data?facebook_id="+response.id+"&first_name="+response.first_name+"&last_name="+response.last_name+"&email="+response.email+"&gender="+response.gender;
                         document.getElementById('status').innerHTML =
                         'ชื่อ facebook login, ' + response.name +"<br/>Email:"+response.email+"<br/>ชื่อ:"+response.first_name+"<br/>สกุล:"+response.last_name+"<br/>userid: "+response.id+"<br/> locale:"+response.locale+"<br/>verified:"+response.verified+"<br/>gender:"+response.gender;
                     });
+                    $function(){
+                        $(".fb-login-button").//////////----ค่อยกลับมาต่อ
+                    }
                 }
             </script>
 
@@ -147,7 +151,8 @@
                 </div>
                 <!-- /.navbar-header -->           
                 <div class="nav navbar-top-links navbar-right ">
-                    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>     <!--  //.facebook login button -->
+                    <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false" onclick="testAPI();"></div>     <!--  //.facebook login button -->
+                    <div id="status"></div>
                 </div>
                 
                 <div class="navbar-default sidebar" role="navigation">

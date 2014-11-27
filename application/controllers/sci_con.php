@@ -120,10 +120,10 @@ class Sci_con extends CI_Controller{
 
 			if((!$fb_data['user_facebook_id']) or (!$fb_data['me']))
 			{
-
-				redirect('sci_con/index');
+				print_r($fb_data);
+				//redirect('sci_con/index');
 			}
-			else if($this->Facebook_model->id_check($fb_data['me']['id']) < 0 )
+			else if($this->sci_m->id_check($fb_data['me']['id']) < 0 )
 			{
 				$query = array(
 					'user_id' => "",
@@ -134,8 +134,8 @@ class Sci_con extends CI_Controller{
 					'user_gender' => $fb_data['me']['gender'],
 					);
 
-				//$this->db->insert('users',$query); 
-				pirnt_r($query);
+				$this->db->insert('users',$query); 
+				//print_r($query);
 
 			}
 			else
@@ -149,6 +149,20 @@ class Sci_con extends CI_Controller{
 				$this->load->view('admin/index',$data);
 			}
 
+		}
+
+		public function facebook_data(){
+			$facebook_id = $this->input->get('facebook_id');
+			$facebook_email = $this->input->get('email');
+			$facebook_first_name = $this->input->get('first_name');
+			$facebook_last_name = $this->input->get('last_name');
+			$facebook_gender = $this->input->get('gender');
+			
+			echo $facebook_id."<br/>";
+			echo $facebook_first_name."<br/>";
+			echo $facebook_last_name."<br/>";
+			echo $facebook_email."<br/>";
+			echo $facebook_gender."<br/>";
 		} 
 	}
 	?>
