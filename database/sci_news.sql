@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 26, 2014 at 01:01 AM
--- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2014 at 05:31 PM
+-- Server version: 5.5.39
+-- PHP Version: 5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `news_detail` text NOT NULL,
   `news_file_upload` text NOT NULL,
   `news_date` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `news`
@@ -52,12 +52,20 @@ INSERT INTO `news` (`news_id`, `news_title`, `news_detail`, `news_file_upload`, 
 
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL DEFAULT '0',
-  `user_facebook_id` int(100) NOT NULL,
+  `user_facebook_id` char(255) NOT NULL,
   `user_first_name` varchar(100) NOT NULL,
   `user_last_name` varchar(100) NOT NULL,
   `user_email` varchar(100) NOT NULL,
   `user_gender` enum('male','female') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_facebook_id`, `user_first_name`, `user_last_name`, `user_email`, `user_gender`) VALUES
+(0, '2147483647', '', '', '', ''),
+(1, '883465988338347', '1', '', '', '');
 
 --
 -- Indexes for dumped tables

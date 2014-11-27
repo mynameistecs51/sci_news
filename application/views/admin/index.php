@@ -49,6 +49,7 @@
             <div class="col-sm-8">
                 <img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
                 <input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>
+            
             </div>
         </div>
 

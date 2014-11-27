@@ -9,7 +9,13 @@ class Fb extends CI_Controller {
 	
 	public function __construct() {
 		parent::__construct();
-		$this->config->load('config_facebook');
+		// parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
+		// $CI = & get_instance();
+		// $CI->config->load("facebook",TRUE);
+		// $config = $CI->config->item('facebook');
+		// $this->load->library('Facebook', $config);
+		//$this->config->load('config_facebook');
+		$this->config->load('facebook');
 	}
 	
 	public function index() {

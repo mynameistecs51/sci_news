@@ -4,13 +4,56 @@ class Sci_con extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model("sci_m",'',TRUE);
+		$this->load->model('facebook_model');
 	}
 
 	public function index(){
-		$data = array(
-			'title' => "SCI NEWS",
-			);
-		$this->load->view('admin/index',$data);
+		// $data = array(
+		// 	'title' => "SCI NEWS",
+		// 	);
+		// $this->load->view('admin/index',$data);
+		$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
+		//print_r( $fb_data);
+		$id =  $fb_data['me']['id'];
+		if((!$fb_data['uid']) or (!$fb_data['me']))
+		{
+            // If this is a protected section that needs user authentication
+            // you can redirect the user somewhere else
+            // or take any other action you need
+			$data['title'] = "SCI NEWS";
+			$this->load->view('admin/index',$data);			
+		}
+		else if($this->facebook_model->id_check($fb_data['me']['id']<0))
+		{
+			
+			$data = array(
+				'title' => "SCI NEWS..",
+				'fb_data' => $fb_data,
+				);
+			
+			$query = array(
+				'user_id' => "",
+				'user_facebook_id' => $fb_data['me']['id'],
+				'user_first_name' => $fb_data['me']['first_name'],
+				'user_last_name' => $fb_data['me']['last_name'],
+				'user_email' => $fb_data['me']['email'],
+				'user_gender' => $fb_data['me']['gender'],
+				);
+
+			$this->db->insert('user',$query); 
+			$this->load->view('admin/index', $data);
+
+		}
+		else
+		{
+			echo "xxx".$this->facebook_model->id_check();
+			$data = array(
+				'title' => "SCI NEWS..",
+				'fb_data' => $fb_data,
+				);
+
+			$this->load->view('admin/index', $data);
+		}
 	}
 
 	//-----------------function upload picture---------------------//
@@ -80,14 +123,34 @@ class Sci_con extends CI_Controller{
 			return $files_uploaded;
 		}
 
-		//-----------------show list news-------------------//
+	//-----------------show list news-------------------//
 		public function list_news(){
-			$data = array(
-				'title' => "รายการข่าวทั้งหมด",
-				'show_news' => $this->sci_m->get_news(),
-				);
+			
+			$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
+		//print_r( $fb_data);
+			if((!$fb_data['uid']) or (!$fb_data['me']))
+			{
+            // If this is a protected section that needs user authentication
+            // you can redirect the user somewhere else
+            // or take any other action you need
+				$data = array(
+					'title' => "SCI NEWS..",
+					'fb_data' => $fb_data,
+					);
+				$this->load->view('admin/index',$data);
 
-			$this->load->view('list_news',$data);
+			}
+			else
+			{
+				$data = array(
+					'title' => "รายการข่าวทั้งหมด",
+					'show_news' => $this->sci_m->get_news(),
+					'fb_data' => $fb_data,
+					);
+
+				$this->load->view('list_news',$data);
+			}
+			
 		}
 
 		// public function index_html(){
@@ -123,7 +186,7 @@ class Sci_con extends CI_Controller{
 				print_r($fb_data);
 				//redirect('sci_con/index');
 			}
-			else if($this->sci_m->id_check($fb_data['me']['id']) < 0 )
+			else if($this->facebook_model->id_check($fb_data['me']['id']) < 0 )
 			{
 				$query = array(
 					'user_id' => "",
@@ -134,7 +197,7 @@ class Sci_con extends CI_Controller{
 					'user_gender' => $fb_data['me']['gender'],
 					);
 
-				$this->db->insert('users',$query); 
+				$this->db->insert('user',$query); 
 				//print_r($query);
 
 			}
@@ -152,6 +215,7 @@ class Sci_con extends CI_Controller{
 		}
 
 		public function facebook_data(){
+
 			$facebook_id = $this->input->get('facebook_id');
 			$facebook_email = $this->input->get('email');
 			$facebook_first_name = $this->input->get('first_name');
