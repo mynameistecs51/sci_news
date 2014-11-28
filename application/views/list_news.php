@@ -9,6 +9,7 @@
 				<th>ภาพ</th>
 				<th>ว/ด/ป ที่อัพเดท</th>
 				<th>รายละเอียด</th>
+				<th>ผู้โพส</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,6 +40,12 @@
 						<?php 
 						echo anchor('sci_con/show_news/'.$row->news_id,"<div class='btn btn-info'>ดูข้อมูล</div>");
 						?>
+					</td>
+					<td>
+					<?php 
+						echo ' <img src="https://graph.facebook.com/'.$row->news_post.'/picture" alt="" class="pic" /><br/>';
+						echo $fb_data['me']['name'];
+					?>
 					</td>
 				</tr>
 				<?php	

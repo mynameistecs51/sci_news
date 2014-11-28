@@ -5,6 +5,8 @@ class Sci_con extends CI_Controller{
 		parent::__construct();
 		$this->load->model("sci_m",'',TRUE);
 		$this->load->model('facebook_model','',TRUE);
+
+
 	}
 
 	public function index(){
@@ -14,24 +16,23 @@ class Sci_con extends CI_Controller{
 		// $this->load->view('admin/index',$data);
 		$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
 		//print_r( $fb_data);
-		$id =  $fb_data['me']['id'];
+		
 		
 		if((!$fb_data['uid']) or (!$fb_data['me']))
-		{	echo "if";
+		{
             // If this is a protected section that needs user authentication
             // you can redirect the user somewhere else
             // or take any other action you need
 			$data['title'] = "SCI NEWS";
 			$this->load->view('admin/index',$data);			
 		}
-		elseif($this->facebook_model->id_check($id)<0)
+		elseif($this->facebook_model->id_check($fb_data) <= 0)
 		{
-			echo "check id";
 			$data = array(
 				'title' => "SCI NEWS..",
 				'fb_data' => $fb_data,
 				);
-			
+
 			$query = array(
 				'user_id' => "",
 				'user_facebook_id' => $fb_data['me']['id'],
@@ -43,11 +44,8 @@ class Sci_con extends CI_Controller{
 
 			$this->db->insert('users',$query); 
 			$this->load->view('admin/index', $data);
-
-		}
-		else
+		}else
 		{
-			echo "else";
 			$data = array(
 				'title' => "SCI NEWS..",
 				'fb_data' => $fb_data,
@@ -59,6 +57,7 @@ class Sci_con extends CI_Controller{
 
 	//-----------------function upload picture---------------------//
 	public function do_upload(){	
+		$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
 		$input_detail = $this->input->post('input_detail');
 		$input_title = $this->input->post('input_title');
 
@@ -84,7 +83,7 @@ class Sci_con extends CI_Controller{
 		// 	$type_picture .=$picture_type.",";
 		// }
 
-		
+
 	//$config['file_name'] =$name_picture;//----------------file_name
 		if($_FILES['images']){			
 			$images= $this->_upload_files('images');
@@ -99,6 +98,7 @@ class Sci_con extends CI_Controller{
 				'news_detail' => $input_detail,
 				'news_file_upload' => substr($name_picture,0,-1),
 				'news_date' => $date,
+				'news_post' => $fb_data['me']['id'],
 				);
 			$this->db->insert('news',$insert);
 			redirect('sci_con/list_news/','refresh');
@@ -187,7 +187,7 @@ class Sci_con extends CI_Controller{
 				print_r($fb_data);
 				//redirect('sci_con/index');
 			}
-			else if($this->facebook_model->id_check($fb_data['me']['id']) < 0 )
+			else if($this->facebook_model->id_check($fb_data) <= 0 )
 			{
 				$query = array(
 					'user_id' => "",
@@ -229,5 +229,22 @@ class Sci_con extends CI_Controller{
 			echo $facebook_email."<br/>";
 			echo $facebook_gender."<br/>";
 		} 
+
+		public function test_fb(){
+			
+			$fb_config = array('appId'=>1540389822873045, 'secret'=>fe8c38bfe393ef20f96605da4ebd5024, 'cookie' => TRUE);
+			
+			$this->load->library('fb/facebook', $fb_config);
+			$fql = 'SELECT post_fbid, fromid, object_id, text, time from comment WHERE  object_id in 
+			(select comments_fbid from link_stat where url ="http://www.example.com/") 
+			order by time desc limit 1';
+			
+			$response = $this->facebook->api(array(
+				'method' => 'fql.query',
+				'query' =>$fql,
+				));
+			echo '<pre>';
+			print_r($response);
+		}
 	}
 	?>
