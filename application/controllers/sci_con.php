@@ -4,7 +4,7 @@ class Sci_con extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->load->model("sci_m",'',TRUE);
-		$this->load->model('facebook_model');
+		$this->load->model('facebook_model','',TRUE);
 	}
 
 	public function index(){
@@ -17,16 +17,16 @@ class Sci_con extends CI_Controller{
 		$id =  $fb_data['me']['id'];
 		
 		if((!$fb_data['uid']) or (!$fb_data['me']))
-		{
+		{	echo "if";
             // If this is a protected section that needs user authentication
             // you can redirect the user somewhere else
             // or take any other action you need
 			$data['title'] = "SCI NEWS";
 			$this->load->view('admin/index',$data);			
 		}
-		else if($this->facebook_model->id_check($id)<0)
+		elseif($this->facebook_model->id_check($id)<0)
 		{
-			
+			echo "check id";
 			$data = array(
 				'title' => "SCI NEWS..",
 				'fb_data' => $fb_data,
@@ -47,6 +47,7 @@ class Sci_con extends CI_Controller{
 		}
 		else
 		{
+			echo "else";
 			$data = array(
 				'title' => "SCI NEWS..",
 				'fb_data' => $fb_data,
