@@ -48,8 +48,9 @@ class Facebook_model extends CI_model{
 
 
     public function id_check($id){
+        echo "id = ".$id;
       $this->db->where('user_facebook_id', $id);
-      return $this->db->get('user')->num_rows();
+      return $this->db->get('users')->num_rows();
   } 
 }
 ?>

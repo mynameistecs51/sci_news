@@ -15,6 +15,7 @@ class Sci_con extends CI_Controller{
 		$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
 		//print_r( $fb_data);
 		$id =  $fb_data['me']['id'];
+		
 		if((!$fb_data['uid']) or (!$fb_data['me']))
 		{
             // If this is a protected section that needs user authentication
@@ -23,7 +24,7 @@ class Sci_con extends CI_Controller{
 			$data['title'] = "SCI NEWS";
 			$this->load->view('admin/index',$data);			
 		}
-		else if($this->facebook_model->id_check($fb_data['me']['id']<0))
+		else if($this->facebook_model->id_check($id)<0)
 		{
 			
 			$data = array(
@@ -40,13 +41,12 @@ class Sci_con extends CI_Controller{
 				'user_gender' => $fb_data['me']['gender'],
 				);
 
-			$this->db->insert('user',$query); 
+			$this->db->insert('users',$query); 
 			$this->load->view('admin/index', $data);
 
 		}
 		else
 		{
-			echo "xxx".$this->facebook_model->id_check();
 			$data = array(
 				'title' => "SCI NEWS..",
 				'fb_data' => $fb_data,
