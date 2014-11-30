@@ -20,7 +20,7 @@ class Fb extends CI_Controller {
 	
 	public function index() {
 		$this->load->view('head');
-		$this->load->view('fb');
+		$this->load->view('admin/index');
 		$this->load->view('footer');
 	}
 	

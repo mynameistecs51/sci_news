@@ -50,6 +50,7 @@
       </head>
 
       <body>
+      <div id="fb-root"></div>
        <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -87,10 +88,11 @@
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '1540389822873045',
-    cookie     : true,  // enable cookies to allow the server to access 
+      secret     : 'fe8c38bfe393ef20f96605da4ebd5024',
+      cookie     : true,  // enable cookies to allow the server to access 
                         // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.1' // use version 2.1
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.2' // use version 2.1
   });
 
   // Now that we've initialized the JavaScript SDK, we call 
@@ -112,13 +114,15 @@
 };
 
   // Load the SDK asynchronously
+  
+
   (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&appId=1540389822873045&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
@@ -145,13 +149,14 @@
      <div class="nav navbar-top-links navbar-right ">
        <?php 
        if(!isset($fb_data['me'])){     
-        echo anchor('$fb_data["loginUrl"]','<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">');
+        echo anchor('$fb_data["loginUrl"]','<fb:login-button scope="public_profile,email" >');
       } else{
         echo ' <img src="https://graph.facebook.com/'.$fb_data['uid'].'/picture" alt="" class="pic" />';
         echo "<br/>";
         echo $fb_data['me']['name']; 
         echo anchor($fb_data['logoutUrl'],'logout')."<br/>";
         echo $fb_data['me']['id'];
+        echo "<div id='status'></div>";
       } 
       ?>
       <!-- <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"  ></div>      //.facebook login button  -->

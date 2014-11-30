@@ -135,9 +135,7 @@ class Sci_con extends CI_Controller{
             // you can redirect the user somewhere else
             // or take any other action you need
 				$data = array(
-					'title' => "SCI NEWS..",
-					'fb_data' => $fb_data,
-					);
+					'title' => "SCI NEWS..",					);
 				$this->load->view('admin/index',$data);
 
 			}
@@ -161,7 +159,7 @@ class Sci_con extends CI_Controller{
 		// 		);
 		// 	$this->load->view('picture',$data);
 		// }
-		public function show_index(){
+		public function show_index(){		//show title news fidd
 			$this->load->view('index');
 		}
 
@@ -174,7 +172,7 @@ class Sci_con extends CI_Controller{
 		}
 
 		public function facebook_login(){
-			$this->load->view('facebook.html');
+			$this->load->view('facebook_login');
 		}
 
 		//-------- account for facebook login --------//
@@ -230,21 +228,6 @@ class Sci_con extends CI_Controller{
 			echo $facebook_gender."<br/>";
 		} 
 
-		public function test_fb(){
-			
-			$fb_config = array('appId'=>1540389822873045, 'secret'=>fe8c38bfe393ef20f96605da4ebd5024, 'cookie' => TRUE);
-			
-			$this->load->library('fb/facebook', $fb_config);
-			$fql = 'SELECT post_fbid, fromid, object_id, text, time from comment WHERE  object_id in 
-			(select comments_fbid from link_stat where url ="http://www.example.com/") 
-			order by time desc limit 1';
-			
-			$response = $this->facebook->api(array(
-				'method' => 'fql.query',
-				'query' =>$fql,
-				));
-			echo '<pre>';
-			print_r($response);
-		}
+		
 	}
 	?>
