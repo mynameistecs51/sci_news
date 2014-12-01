@@ -41,10 +41,10 @@
 						echo anchor('sci_con/show_news/'.$row->news_id,"<div class='btn btn-info'>ดูข้อมูล</div>");
 						?>
 					</td>
-					<td>
+					<td align="center">
 					<?php 
 						echo ' <img src="https://graph.facebook.com/'.$row->news_post.'/picture" alt="" class="pic" /><br/>';
-						echo $fb_data['me']['name'];
+						echo $row->user_first_name." ".$row->user_last_name;
 					?>
 					</td>
 				</tr>

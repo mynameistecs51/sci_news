@@ -1,5 +1,5 @@
 <?php
 	$config = array();
-	$config['appId'] 			= '1540389822873045';
-	$config['secret'] 			= 'fe8c38bfe393ef20f96605da4ebd5024';
+	$config['appId'] 			= '820131761362365';
+	$config['secret'] 			= 'bf4c7c0bb6b831d89391333b49c2084b';
 ?>

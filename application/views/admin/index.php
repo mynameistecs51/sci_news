@@ -52,7 +52,8 @@
             
             </div>
         </div>
-
+        <div> 
+        </div>
         <div class="col-sm-offset-8  col-xs-4">
             <button type="reset" class="btn btn-warning" value="reset">reset</button>
             <button type="submit" class="btn btn-success" value="save">save</button>
