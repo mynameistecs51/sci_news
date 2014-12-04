@@ -86,7 +86,7 @@
 
             window.fbAsyncInit = function() {
               FB.init({
-                appId      : '820131761362365',
+                appId      : '822167277825480',
               cookie     : true,  // enable cookies to allow the server to access 
                                   // the session
               xfbml      : true,  // parse social plugins on this page
@@ -116,7 +116,7 @@
               var js, fjs = d.getElementsByTagName(s)[0];
               if (d.getElementById(id)) return;
               js = d.createElement(s); js.id = id;
-              js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&appId=820131761362365&version=v2.0";
+              js.src = "//connect.facebook.net/th_TH/sdk.js#xfbml=1&appId=822167277825480&version=v2.0";
               fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
@@ -150,7 +150,7 @@
                   echo ' <img src="https://graph.facebook.com/'.$fb_data['uid'].'/picture" alt="" class="pic" />';
                   echo "<br/>";
                   echo $fb_data['me']['name']." "; 
-                  echo anchor($fb_data['logoutUrl'],'logout')."<br/>";
+                  echo anchor($fb_data['logoutUrl'],'logout')."<br/>".$fb_data['me']['id'];
                 } 
                 ?>
               </div>

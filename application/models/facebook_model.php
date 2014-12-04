@@ -5,8 +5,8 @@ class Facebook_model extends CI_model{
 	public function __construct() {
         parent::__construct();
         $config = array(
-            'appId'  => '820131761362365',
-            'secret' => 'bf4c7c0bb6b831d89391333b49c2084b',
+            'appId'  => '822167277825480',
+            'secret' => '6f49e30995b35fab5431e31907d30ccb',
             'fileUpload' => true, // Indicates if the CURL based @ syntax for file uploads is enabled.
             );
 
@@ -48,8 +48,9 @@ class Facebook_model extends CI_model{
 
 
     public function id_check($fb_data){
-    $query_faceboo_id = $this->db->query("SELECT * FROM users WHERE user_facebook_id =".$fb_data['me']['id'])->num_rows();
-    return $query_faceboo_id;
-  } 
+     $query_faceboo_id = $this->db->query("SELECT * FROM users WHERE user_facebook_id =".$fb_data['me']['id'])->num_rows();
+
+     return $query_faceboo_id;
+ } 
 }
 ?>

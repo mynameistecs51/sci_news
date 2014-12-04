@@ -17,26 +17,24 @@ class Sci_con extends CI_Controller{
 		$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
 		//print_r( $fb_data);
 		
-		
 		if((!$fb_data['uid']) or (!$fb_data['me']))
 		{
             // If this is a protected section that needs user authentication
             // you can redirect the user somewhere else
             // or take any other action you need
-			$data['title'] = "SCI NEWS";
+			$data['title'] = "SCI NEWS[1]";
 
-			//$this->load->view('list_news',$data);			
-			redirect('sci_con/list_news/','refresh');
+			$this->load->view('list_news',$data);			
+			//redirect('sci_con/list_news/','refresh');
 		}
 		elseif($this->facebook_model->id_check($fb_data) <= 0)
 		{
-			$data = array(
-				'title' => "SCI NEWS..",
-				'fb_data' => $fb_data,
-				);
+			// $data = array(
+			// 	'title' => "SCI NEWS..",
+			// 	'fb_data' => $fb_data,
+			// 	);
 
 			$query = array(
-				'user_id' => "",
 				'user_facebook_id' => $fb_data['me']['id'],
 				'user_first_name' => $fb_data['me']['first_name'],
 				'user_last_name' => $fb_data['me']['last_name'],
@@ -45,11 +43,12 @@ class Sci_con extends CI_Controller{
 				);
 
 			$this->db->insert('users',$query); 
-			$this->load->view('list_news', $data);
-		}else
-		{
+			// $this->load->view('list_news', $data);
+		//	redirect('sci_con/list_news','refresh');
+		}else{
+			
 			$data = array(
-				'title' => "SCI NEWS..",
+				'title' => "SCI NEWS..[3]",
 				'fb_data' => $fb_data,
 				);
 
@@ -141,7 +140,7 @@ private function _upload_files($field='userfile'){
             // or take any other action you need
 				$data = array(
 					'show_news' => $this->sci_m->get_news(),
-					'title' => "SCI NEWS..",					);
+					'title' => "SCI NEWS..[not login]",					);
 				$this->load->view('list_news',$data);
 
 			}
