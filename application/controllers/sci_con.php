@@ -22,8 +22,10 @@ class Sci_con extends CI_Controller{
             // If this is a protected section that needs user authentication
             // you can redirect the user somewhere else
             // or take any other action you need
-			$data['title'] = "SCI NEWS[1]";
-
+			$data = array(
+				'show_news' => $this->sci_m->get_news(),
+				'title' => "SCI NEWS..[1]",	
+				);	
 			$this->load->view('list_news',$data);			
 			//redirect('sci_con/list_news/','refresh');
 		}
@@ -44,15 +46,16 @@ class Sci_con extends CI_Controller{
 
 			$this->db->insert('users',$query); 
 			// $this->load->view('list_news', $data);
-		//	redirect('sci_con/list_news','refresh');
+			redirect('sci_con/list_news','refresh');
 		}else{
 			
 			$data = array(
 				'title' => "SCI NEWS..[3]",
 				'fb_data' => $fb_data,
+				'show_news' => $this->sci_m->get_news(),
 				);
 
-			$this->load->view('list_news', $data);
+			$this->load->view('admin/list_news_edit', $data);
 		}
 	}
 
@@ -207,6 +210,20 @@ private function _upload_files($field='userfile'){
 
 				$this->load->view('admin/index',$data);
 			}	
+		}
+
+		function delete_news($news_id){
+			$query_delete_file = $this->db->query("SELECT * FROM news WHERE news_id=".$news_id)->result();
+
+			foreach ($query_delete_file as $tabel_news => $row_news) {
+			$pic_name_explode = explode(",", $row_news->news_file_upload);
+				for($i = 0; $i < count($pic_name_explode); $i++){
+					unlink('../sci_news/file_upload/pict_news/'.$pic_name_explode[$i]);
+				}//end for
+
+			} //end foreach 
+			$this->sci_m->delete_news($news_id);
+			redirect('sci_con/list_news','refresh');
 		}	
 	}
 	?>

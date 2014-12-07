@@ -30,5 +30,10 @@ class Sci_m  extends CI_model {
 		$get_news_id = $this->db->query($sql_get_news_id)->result();
 		return $get_news_id;
 	}
+
+	function delete_news($news_id){
+		$query_delete_news = $this->db->query("DELETE  FROM news WHERE news_id=".$news_id);
+		return true;
+	}
 }
 ?>

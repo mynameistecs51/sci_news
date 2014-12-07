@@ -150,7 +150,7 @@
                   echo ' <img src="https://graph.facebook.com/'.$fb_data['uid'].'/picture" alt="" class="pic" />';
                   echo "<br/>";
                   echo $fb_data['me']['name']." "; 
-                  echo anchor($fb_data['logoutUrl'],'logout')."<br/>".$fb_data['me']['id'];
+                  echo anchor($fb_data['logoutUrl'],'logout')."<br/>";
                 } 
                 ?>
               </div>
