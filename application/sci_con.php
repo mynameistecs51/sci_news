@@ -218,12 +218,12 @@ private function _upload_files($field='userfile'){
 			foreach ($query_delete_file as $tabel_news => $row_news) {
 			$pic_name_explode = explode(",", $row_news->news_file_upload);
 				for($i = 0; $i < count($pic_name_explode); $i++){
-				unlink('../scinews/file_upload/pict_news/'.$pic_name_explode[$i]);
+				unlink('../sci.udru.ac.th/scinews/file_upload/pict_news/'.$pic_name_explode[$i]);
 				}//end for
 
 			} //end foreach 
 			$this->sci_m->delete_news($news_id);
-			redirect('sci_con/','refresh');
+			//redirect('sci_con/list_news','refresh');
 		}	
 	}
 	?>

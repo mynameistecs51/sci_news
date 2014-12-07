@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/sci_news/';
+$config['base_url']	= 'http://localhost/sci_news;
 
 /*
 |--------------------------------------------------------------------------
@@ -328,7 +328,7 @@ $config['compress_output'] = FALSE;
 | regarding date handling.
 |
 */
-$config['time_reference'] = 'local';
+$config['time_reference'] = 'gmt';
 
 
 /*
