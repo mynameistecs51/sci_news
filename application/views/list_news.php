@@ -47,11 +47,13 @@
 						echo $row->user_first_name." ".$row->user_last_name;
 					?>
 					</td>
-				</tr>
+					</tr>
+					
 				<?php	
 			}
 			?>
 		</tbody>
 	</table>	
+
 </div>
 <?php $this->load->view('footer');?>

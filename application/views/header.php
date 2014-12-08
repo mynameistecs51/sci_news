@@ -51,7 +51,7 @@
 
       <body>
         <div id="fb-root"></div>
-         <script>
+        <script>
         //     // This is called with the results from from FB.getLoginStatus().
         //     function statusChangeCallback(response) {
         //       console.log('statusChangeCallback');
@@ -130,46 +130,46 @@
         //         'Thanks for logging in, ' + response.name + '!';
         //       });
         //     }
-         </script>
+      </script>
 
-          <div id="wrapper">
+    <div id="wrapper">
 
-            <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Science Admin </a>
-              </div>
-              <!-- /.navbar-header --> 
-              <div class="row col-xs-offset-3 col-md-7" >  
-               <!-- <div class=" col-md-offset-5">   -->      
-               <div class="nav navbar-top-links navbar-right " align="center" style="inline:2px;padding-top: 25px">
-                 <?php 
-                 if(!$fb_data['me']){     
-                  // echo anchor($fb_data['loginUrl'],'<fb:login-button scope="public_profile,email" />');
-                  echo anchor($fb_data['loginUrl'],'login');
-                 }  else  {
-                  echo ' <img src="https://graph.facebook.com/'.$fb_data['uid'].'/picture" alt="" class="pic" />';
-                  echo "<br/>";
-                  echo $fb_data['me']['name']." "; 
-                  echo anchor($fb_data['logoutUrl'],'logout');
-                } 
-                ?>
-              </div>
-            </div>
+      <!-- Navigation -->
+      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">Science Admin </a>
+        </div>
+        <!-- /.navbar-header --> 
+        <div class="row col-xs-offset-3 col-md-7" >  
+         <!-- <div class=" col-md-offset-5">   -->      
+         <div class="nav navbar-top-links navbar-right " align="center" style="inline:2px;padding-top: 25px">
+           <?php 
+           if(!$fb_data['me']){     
+            echo anchor($fb_data['loginUrl'],'<image src="'.base_url().'image/pict_admin/fb_login.png"/>');
+          }  else  {
+            echo ' <img src="https://graph.facebook.com/'.$fb_data['uid'].'/picture" alt="" class="pic" />';
+            echo "<br/>";
+            echo $fb_data['me']['name']." "; 
+            echo anchor($fb_data['logoutUrl'],'logout');
+                 //echo anchor('sci_con/logout','logout');
+          } 
+          ?>
+        </div>
+      </div>
 
-            <div class="navbar-default sidebar" role="navigation">
-              <div class="sidebar-nav navbar-collapse">
-                <ul class="nav" id="side-menu">
-                  <li>
-                    <?php echo anchor( 'sci_con/add_news/','<i class="glyphicon glyphicon-picture"></i> เพิ่มข้อมูลรูปภาพ','class="active"');?>
-                  </li>
-                  <li>
-                    <?php echo anchor('sci_con/list_news','<i class="glyphicon glyphicon-th-list"></i> รายการข่าว','class="active"');?>
-                  </li>
-                </ul>
-              </div>
-              <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-          </nav>
-          <div id="page-wrapper">
+      <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+          <ul class="nav" id="side-menu">
+            <li>
+              <?php echo anchor( 'sci_con/add_news/','<i class="glyphicon glyphicon-picture"></i> เพิ่มข้อมูลรูปภาพ','class="active"');?>
+            </li>
+            <li>
+              <?php echo anchor('sci_con/list_news','<i class="glyphicon glyphicon-th-list"></i> รายการข่าว','class="active"');?>
+            </li>
+          </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+      </div>
+      <!-- /.navbar-static-side -->
+    </nav>
+    <div id="page-wrapper">

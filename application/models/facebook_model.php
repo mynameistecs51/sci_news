@@ -37,7 +37,7 @@ class Facebook_model extends CI_model{
             'loginUrl' => $this->facebook->getLoginUrl(
                 array(
                                 'scope' => 'public_profile,email', // app permissions
-                                'redirect_uri' => base_url().'index.php/sci_con', // URL where you want to redirect your users after a successful login
+                                'redirect_uri' => base_url(), // URL where you want to redirect your users after a successful login
                                 )
                 ),
             'logoutUrl' => $this->facebook->getLogoutUrl(),
@@ -48,9 +48,10 @@ class Facebook_model extends CI_model{
 
 
     public function id_check($fb_data){
-     $query_faceboo_id = $this->db->query("SELECT * FROM users WHERE user_facebook_id =".$fb_data['me']['id'])->num_rows();
+       $query_faceboo_id = $this->db->query("SELECT * FROM users WHERE user_facebook_id =".$fb_data['me']['id'])->num_rows();
 
-     return $query_faceboo_id;
- } 
+       return $query_faceboo_id;
+   } 
+
 }
 ?>

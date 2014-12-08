@@ -144,7 +144,9 @@ private function _upload_files($field='userfile'){
             // or take any other action you need
 				$data = array(
 					'show_news' => $this->sci_m->get_news(),
-					'title' => "SCI NEWS..[not login]",					);
+					'title' => "SCI NEWS..[not login]",		
+					'fb_data' => $fb_data,
+					);
 				$this->load->view('list_news',$data);
 
 			}
@@ -217,14 +219,27 @@ private function _upload_files($field='userfile'){
 			$query_delete_file = $this->db->query("SELECT * FROM news WHERE news_id=".$news_id)->result();
 
 			foreach ($query_delete_file as $tabel_news => $row_news) {
-			$pic_name_explode = explode(",", $row_news->news_file_upload);
+				$pic_name_explode = explode(",", $row_news->news_file_upload);
 				for($i = 0; $i < count($pic_name_explode); $i++){
-				unlink('../scinews/file_upload/pict_news/'.$pic_name_explode[$i]);
+					unlink('../scinews/file_upload/pict_news/'.$pic_name_explode[$i]);
 				}//end for
 
 			} //end foreach 
 			$this->sci_m->delete_news($news_id);
 			redirect('sci_con/','refresh');
 		}	
+
+		public function logout() {
+			$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
+			$this->facebook_model->logoutUrl();
+			setcookie('PHPSESSID', '', time()-3600, "/");
+
+			$this->session->sess_destroy();
+			//$this->facebook->getLogoutUrl(array('next' => site_url('user/logout'));
+			//redirect('sci_con/', 'refresh');  //redirect to the home page
+
+			$this->load->view("admin/index");
+		}
+
 	}
 	?>
