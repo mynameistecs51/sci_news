@@ -25,6 +25,7 @@ class Sci_con extends CI_Controller{
 			$data = array(
 				'show_news' => $this->sci_m->get_news(),
 				'title' => "SCI NEWS..[1]",	
+				'fb_data' => $fb_data,
 				);	
 			$this->load->view('list_news',$data);			
 			//redirect('sci_con/list_news/','refresh');

@@ -37,7 +37,7 @@ class Facebook_model extends CI_model{
             'loginUrl' => $this->facebook->getLoginUrl(
                 array(
                                 'scope' => 'public_profile,email', // app permissions
-                                'redirect_uri' => '' // URL where you want to redirect your users after a successful login
+                                'redirect_uri' => base_url().'index.php/sci_con', // URL where you want to redirect your users after a successful login
                                 )
                 ),
             'logoutUrl' => $this->facebook->getLogoutUrl(),
