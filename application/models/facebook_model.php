@@ -5,8 +5,8 @@ class Facebook_model extends CI_model{
 	public function __construct() {
         parent::__construct();
         $config = array(
-            'appId'  => '822167277825480',
-            'secret' => '6f49e30995b35fab5431e31907d30ccb',
+            'appId'  => '820131761362365',
+            'secret' => 'bf4c7c0bb6b831d89391333b49c2084b',
             'fileUpload' => true, // Indicates if the CURL based @ syntax for file uploads is enabled.
             );
 
@@ -46,12 +46,16 @@ class Facebook_model extends CI_model{
         $this->session->set_userdata('fb_data', $fb_data);
     }
 
+    public function get_news_id_userpost($fb_data){
+         $get_news_userpost = $this->db->query('SELECT `users`.`user_first_name`, `users`.`user_facebook_id`, `users`.`user_last_name`, `news`.`news_id`, `news`.`news_title`, `news`.`news_detail`, `news`.`news_file_upload`, `news`.`news_date`, `news`.`news_post` FROM `news` INNER JOIN `users` ON `news`.`news_post` = `users`.`user_facebook_id` WHERE `news`.`news_post` = '.$fb_data['me']['id'].' ORDER BY `news`.`news_id` DESC');
+    return $get_news_userpost->result();
+    }
 
     public function id_check($fb_data){
-       $query_faceboo_id = $this->db->query("SELECT * FROM users WHERE user_facebook_id =".$fb_data['me']['id'])->num_rows();
+     $query_faceboo_id = $this->db->query("SELECT * FROM users WHERE user_facebook_id =".$fb_data['me']['id'])->num_rows();
 
-       return $query_faceboo_id;
-   } 
+     return $query_faceboo_id;
+ } 
 
 }
 ?>
