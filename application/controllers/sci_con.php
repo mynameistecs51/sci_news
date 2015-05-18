@@ -237,5 +237,16 @@ private function _upload_files($field='userfile'){
 			//$this->load->view("admin/index");
 		}
 
+		function create_news(){
+			$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
+		//print_r( $fb_data);
+		//
+			$data = array(
+				'title' => "create news",
+				'fb_data' => $fb_data,
+				);
+			$this->load->view('create_news',$data);
+		}
+
 	}
 	?>
