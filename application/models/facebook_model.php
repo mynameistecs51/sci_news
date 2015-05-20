@@ -47,15 +47,15 @@ class Facebook_model extends CI_model{
     }
 
     public function get_news_id_userpost($fb_data){
-         $get_news_userpost = $this->db->query('SELECT `users`.`user_first_name`, `users`.`user_facebook_id`, `users`.`user_last_name`, `news`.`news_id`, `news`.`news_title`, `news`.`news_detail`, `news`.`news_file_upload`, `news`.`news_date`, `news`.`news_post` FROM `news` INNER JOIN `users` ON `news`.`news_post` = `users`.`user_facebook_id` WHERE `news`.`news_post` = '.$fb_data['me']['id'].' ORDER BY `news`.`news_id` DESC');
-    return $get_news_userpost->result();
-    }
+       $get_news_userpost = $this->db->query('SELECT `users`.`user_first_name`, `users`.`user_facebook_id`, `users`.`user_last_name`, `news`.`news_id`, `news`.`news_title`, `news`.`news_detail`, `news`.`news_file_upload`, `news`.`news_date`, `news`.`news_post` FROM `news` INNER JOIN `users` ON `news`.`news_post` = `users`.`user_facebook_id` WHERE `news`.`news_post` = '.$fb_data['me']['id'].' ORDER BY `news`.`news_id` DESC');
+       return $get_news_userpost->result();
+   }
 
-    public function id_check($fb_data){
-     $query_faceboo_id = $this->db->query("SELECT * FROM users WHERE user_facebook_id =".$fb_data['me']['id'])->num_rows();
+   public function id_check($fb_data){
+       $query_faceboo_id = $this->db->query("SELECT * FROM users WHERE user_facebook_id =".$fb_data['me']['id'])->num_rows();
 
-     return $query_faceboo_id;
- } 
+       return $query_faceboo_id;
+   } 
 
 }
 ?>
