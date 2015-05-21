@@ -10,16 +10,18 @@
   <style>
     .draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
     /*#draggable, #draggable2 { margin-bottom:20px; }*/
-    #draggable { cursor: n-resize; }
+    #draggable { cursor: move; }
     /*#draggable2 { cursor: e-resize; }*/
     #containment-wrapper { width: 95%; height:500px; border:2px solid #ccc; padding: 10px; }
-
+    #resizable { width: 150px; height: 150px; padding: 0.5em; }
     h3 { clear: left; }
   </style>
   <script>
     $(function() {
+      $( "#draggable" ).draggable();
+      
       jQuery(function() {
-        jQuery(".dragImg").draggable({
+        jQuery(".draggable").draggable({
         //  use a helper-clone that is append to 'body' so is not 'contained' by a pane
         helper: function() {
           return jQuery(this).clone().appendTo(' body').css({
@@ -32,7 +34,7 @@
 
         jQuery('.ui-layout-center').droppable({
           activeClass: 'ui-state-hover',
-          accept: '.dragImg',
+          accept: '.draggable',
           drop: function(event, ui) {
             if (!ui.draggable.hasClass("dropped"))
               jQuery(this).append(jQuery(ui.draggable).clone().addClass("dropped").draggable());
@@ -40,8 +42,8 @@
         });
       });
 
-      $(".dragImg").resizable();
-
+      $(".draggable").resizable();
+      
     });
   </script>
 </head>
@@ -50,9 +52,13 @@
   <h3>สร้าง content ขนาดกระดาษ A3 แนวนอน:</h3>กลับหน้าหลัก <?php echo anchor('sci_con/','index');?>
   <a class="add-box" href="#">add textarea  </a>
   
-  <div class="dragImg"><img src="http://placehold.it/80x80">
+  <!-- <div class="draggable" id="resize"></div> -->
+  <div id="draggable" class="ui-widget-content">
+  <p>Drag me around</p>
+</div>
+  <div id="resize" class="draggable">
+    <p>Drag me around</p>
   </div>
-
   <div class="ui-layout-center" id="containment-wrapper"> 
 
   </div>
