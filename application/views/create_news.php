@@ -8,7 +8,7 @@
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
   <style>
-    .draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+    /*#draggable { width: 90px; height: 90px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }*/
     /*#draggable, #draggable2 { margin-bottom:20px; }*/
     #draggable { cursor: move; }
     /*#draggable2 { cursor: e-resize; }*/
@@ -18,10 +18,11 @@
   </style>
   <script>
     $(function() {
-      $( "#draggable" ).draggable();
-      
+      // $( "#draggable" ).draggable();
+      $("#draggable").resizable();
+
       jQuery(function() {
-        jQuery(".draggable").draggable({
+        jQuery("#draggable").draggable({
         //  use a helper-clone that is append to 'body' so is not 'contained' by a pane
         helper: function() {
           return jQuery(this).clone().appendTo(' body').css({
@@ -34,7 +35,7 @@
 
         jQuery('.ui-layout-center').droppable({
           activeClass: 'ui-state-hover',
-          accept: '.draggable',
+          accept: '#draggable',
           drop: function(event, ui) {
             if (!ui.draggable.hasClass("dropped"))
               jQuery(this).append(jQuery(ui.draggable).clone().addClass("dropped").draggable());
@@ -42,10 +43,10 @@
         });
       });
 
-      $(".draggable").resizable();
       
+
     });
-  </script>
+</script>
 </head>
 <body>
 
@@ -54,10 +55,10 @@
   
   <!-- <div class="draggable" id="resize"></div> -->
   <div id="draggable" class="ui-widget-content">
-  <p>Drag me around</p>
-</div>
-  <div id="resize" class="draggable">
-    <p>Drag me around</p>
+    <p>add picture box</p>
+  </div>
+  <div id="draggable" class="resize">
+    <p>add text box</p>
   </div>
   <div class="ui-layout-center" id="containment-wrapper"> 
 
