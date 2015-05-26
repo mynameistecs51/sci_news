@@ -7,6 +7,7 @@
 
   <!--  <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <style>
+    #draggable { width: 50px; height: 50px; padding: 0.5em; }
     #draggable { cursor: move; }
     #containment-wrapper { width: 95%; height:500px; border:2px solid #ccc; padding: 10px; }
     .resizable { width: 150px; height: 150px; padding: 0.5em; }
@@ -20,9 +21,9 @@
   
   <!-- <div class="draggable" id="resize"></div> -->
   <div id="draggable" class="ui-widget-content">
-    <p>add picture box</p>
+    <p> picture </p>
   </div>
-  <div id="draggable" class="resize">
+  <div >
     <p>add text box</p>
   </div>
   <div class="ui-layout-center" id="containment-wrapper"> 
