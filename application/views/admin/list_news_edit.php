@@ -44,15 +44,15 @@
 					</td>
 					<td>
 						<?php
-							echo anchor('sci_con/edit_news','<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>','<button type="button" class="btn btn-warning"')."&nbsp;&nbsp;";
-							echo anchor('sci_con/delete_news/'.$row->news_id,'<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>','<button type="button" class="btn btn-danger"');
+						echo anchor('sci_con/edit_news','<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>','<button type="button" class="btn btn-warning"')."&nbsp;&nbsp;";
+						echo anchor('sci_con/delete_news/'.$row->news_id,'<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>','<button type="button" class="btn btn-danger"');
 						?>
 					</td>
 					<td align="center">
-					<?php 
+						<?php 
 						echo ' <img src="https://graph.facebook.com/'.$row->news_post.'/picture" alt="" class="pic" /><br/>';
 						echo $row->user_first_name." ".$row->user_last_name;
-					?>
+						?>
 					</td>
 					<hr/>
 				</tr>
