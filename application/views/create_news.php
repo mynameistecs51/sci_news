@@ -25,9 +25,9 @@
 	<!-- <div class="draggable" id="resize"></div> -->
 
 	<div id="draggable" class="ui-widget-content" name="draggable[]">
-		<img id="show_pic[1]" name="show_pic[1]" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" />
+		<img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" />
 
-		<input type="file" id="images[1]" class="hiddent-file" name="images[1]" size="20" onchange="PreviewImage(this);" />
+		<input type="file" id="images" class="hiddent-file" name="images" size="20" onchange="PreviewImage(this);" />
 		<a class="delete" href="#">delete </a>
 	</div>
 
@@ -35,7 +35,7 @@
 	<!-- <input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/> -->
 
 	<div >
-		<p>add text box</p>
+		<p>ดับเบิ้ลคลิ๊กเพื่อเพิ่มรูปภาพ</p>
 	</div>
 
 	<div class="ui-layout-center" id="containment-wrapper"> 
@@ -72,12 +72,27 @@
 							$(this).parent().remove();
 							return false;
 						});
+            // show pic ture box file upload //
+            function PreviewImage() {
 
-					}
-				}
-			});
+              var oFReader = new FileReader();
+
+              oFReader.readAsDataURL(document.getElementById("images").files[0]);
+
+              oFReader.onload = function (oFREvent) {
+
+                document.getElementById("show_pic").src = oFREvent.target.result;
+
+              };
+
+            } 
+            // end show pic ture file upload//
+
+          }
+        }
+      });
 
 		});
-	</script>
+</script>
 </body>
 </html>
