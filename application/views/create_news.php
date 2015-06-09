@@ -52,7 +52,6 @@
  			};    
  			$(".ui-widget-content").draggable({
  				helper: "clone",
- 				cursor:"move",
                          	//Create counter
                          	start: function() { counts[0]++; }
                          });
