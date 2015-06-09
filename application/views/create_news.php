@@ -9,12 +9,11 @@
 	<style>
 		#draggable {width:130px; height:130px; padding: 0.5em; }
 		#draggable { cursor: move; }
-		#containment-wrapper { width: 95%; height:500px; border:2px solid #ccc; padding: 10px; }
-		.resizable { width: 150px; height: 150px; padding: 0.5em; }
-		/*.title{blackground:lightblue;height: 50px;cursor: pinter;margin-bottom: 20px;}*/
+		#containment-wrapper { width: 95%; height:500px; border:2px solid #ccc; padding: 10px; border: dotted 1px black; }
 		.delete{color:red; display: none;}
 		.hiddent-file{display: none;}
 		#draggable:hover .delete{display: block}
+		/*.item- :hover .delete{display: block;}*/
 		h3 { clear: left; }
 	</style>
 </head>
@@ -24,8 +23,8 @@
 
 	<!-- <div class="draggable" id="resize"></div> -->
 
-	<div id="draggable" class="ui-widget-content" name="draggable[]">
-		<img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" />
+	<div id="draggable" class="ui-widget-content" name="draggable">
+		<img class="img" id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" />
 
 		<input type="file" id="images" class="hiddent-file" name="images" size="20" onchange="PreviewImage(this);" />
 		<a class="delete" href="#">delete </a>
@@ -43,56 +42,56 @@
 	</div>
 	<!-- jquery  -->
 	<script src="<?php echo base_url();?>js/jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
-	<script src="<?php echo base_url();?>js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>    
+	<script src="<?php echo base_url();?>js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 	<script>
+		$(function(){  
+ 			//Make every clone image unique.  
+ 			var counts = [0];
+ 			var resizeOpts = { 
+ 				handles: "all" ,autoHide:true
+ 			};    
+ 			$(".ui-widget-content").draggable({
+ 				helper: "clone",
+                         	//Create counter
+                         	start: function() { counts[0]++; }
+                         });
 
-		$(function() {
+ 			$("#containment-wrapper").droppable({
+ 				drop: function(e, ui){
+ 					if(ui.draggable.hasClass("ui-widget-content")) {
+ 						$(this).append($(ui.helper).clone());
+					 	//Pointing to the ui-widget-content class in containment-wrapper and add new class.
+					 	$("#containment-wrapper .ui-widget-content").addClass("item-"+counts[0]);
+					 	$("#containment-wrapper .img").addClass("imgSize-"+counts[0]);
 
-			$("#draggable").draggable({
-				helper: function() {
-					return jQuery(this).clone().appendTo(' body').css({
-						'zIndex': 5
-					});
-				},
-				cursor: 'move',
-				containment: "document"
-			});
+						//Remove the current class (ui-draggable and ui-widget-content)
+						$("#containment-wrapper .item-"+counts[0]).removeClass("ui-widget-content ui-draggable ui-draggable-dragging");
 
-			$('.ui-layout-center').droppable({
-				activeClass: 'ui-state-hover',
-				accept: '#draggable',
-				tolerance:'pointer',
-
-				drop: function(event, ui) {
-					if (!ui.draggable.hasClass("dropped")){
-						$(this).append($(ui.draggable).clone().addClass("dropped").draggable().resizable().dblclick( function(){
-							$('input[type="file"]').click(); 
-						}));
-						$('.delete').click(function(){
-							$(this).parent().remove();
+						// $(".delete .item- "+counts[0]).dblclick(function() {
+						// 	$(this).remove();
+						// });
+						$('.delete ').click(function(){
+							$(this).remove();
 							return false;
 						});
-            // show pic ture box file upload //
-            function PreviewImage() {
+						make_draggable($(".item-"+counts[0])); 
+						$(".imgSize-"+counts[0]).resizable(resizeOpts);
+					}
 
-              var oFReader = new FileReader();
+				}
+			});
 
-              oFReader.readAsDataURL(document.getElementById("images").files[0]);
+ 			var zIndex = 0;
+ 			function make_draggable(elements){
+ 				elements.draggable({
+ 					containment:'parent',
+ 					start:function(e,ui){ ui.helper.css('z-index',++zIndex); },
+ 					stop:function(e,ui){
+ 					}
+ 				});
+ 			}
 
-              oFReader.onload = function (oFREvent) {
-
-                document.getElementById("show_pic").src = oFREvent.target.result;
-
-              };
-
-            } 
-            // end show pic ture file upload//
-
-          }
-        }
-      });
-
-		});
+ 		});
 </script>
 </body>
 </html>
