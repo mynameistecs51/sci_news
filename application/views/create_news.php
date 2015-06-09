@@ -52,6 +52,7 @@
  			};    
  			$(".ui-widget-content").draggable({
  				helper: "clone",
+ 				cursor:"move",
                          	//Create counter
                          	start: function() { counts[0]++; }
                          });
@@ -70,9 +71,10 @@
 						// $(".delete .item- "+counts[0]).dblclick(function() {
 						// 	$(this).remove();
 						// });
-						$('.delete ').click(function(){
-							$(this).remove();
-							return false;
+						$('.item-'+counts[0]).dblclick(function(){
+							// $(this).remove();
+							// return false;
+							alert('test');
 						});
 						make_draggable($(".item-"+counts[0])); 
 						$(".imgSize-"+counts[0]).resizable(resizeOpts);
