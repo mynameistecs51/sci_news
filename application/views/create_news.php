@@ -7,13 +7,13 @@
 
 	<!--  <link rel="stylesheet" href="/resources/demos/style.css"> -->
 	<style>
-		#draggable {width:130px; height:130px; padding: 0.5em; }
-		#draggable { cursor: move; }
+		#draggable {width:130px; height:130px; padding: 0.5em; cursor: move; }
+		/*#draggable { cursor: move; }*/
 		#containment-wrapper { width: 95%; height:500px; border:2px solid #ccc; padding: 10px; border: dotted 1px black; }
 		.delete{color:red; display: none;}
 		.hiddent-file{display: none;}
-		#draggable:hover .delete{display: block}
-		/*.item- :hover .delete{display: block;}*/
+		/*#draggable:hover .delete{display: block}*/
+		.ui-draggable-handle:hover .delete{display: block;}
 		h3 { clear: left; }
 	</style>
 </head>
@@ -60,20 +60,19 @@
  				drop: function(e, ui){
  					if(ui.draggable.hasClass("ui-widget-content")) {
  						$(this).append($(ui.helper).clone());
-					 	//Pointing to the ui-widget-content class in containment-wrapper and add new class.
-					 	$("#containment-wrapper .ui-widget-content").addClass("item-"+counts[0]);
-					 	$("#containment-wrapper .img").addClass("imgSize-"+counts[0]);
+						//Pointing to the ui-widget-content class in containment-wrapper and add new class.
+						$("#containment-wrapper .ui-widget-content").addClass("item-"+counts[0]);
+						$("#containment-wrapper .img").addClass("imgSize-"+counts[0]);
 
 						//Remove the current class (ui-draggable and ui-widget-content)
 						$("#containment-wrapper .item-"+counts[0]).removeClass("ui-widget-content ui-draggable ui-draggable-dragging");
 
-						// $(".delete .item- "+counts[0]).dblclick(function() {
-						// 	$(this).remove();
-						// });
 						$('.item-'+counts[0]).dblclick(function(){
-							// $(this).remove();
-							// return false;
-							alert('test');
+							$('#images').click();
+						});
+
+						$('.delete').click(function() {
+							$(this).parent().remove();
 						});
 						make_draggable($(".item-"+counts[0])); 
 						$(".imgSize-"+counts[0]).resizable(resizeOpts);
@@ -91,6 +90,21 @@
  					}
  				});
  			}
+
+ 			//functon preview file upload
+ 			function PreviewImage() {
+
+ 				var oFReader = new FileReader();
+
+ 				oFReader.readAsDataURL(document.getElementById("images").files[0]);
+
+ 				oFReader.onload = function (oFREvent) {
+
+ 					document.getElementById("show_pic").src = oFREvent.target.result;
+
+ 				};
+
+ 			} 
 
  		});
 </script>

@@ -4,19 +4,19 @@
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <script type="text/javascript">
 
-  function PreviewImage() {
+	function PreviewImage() {
 
-    var oFReader = new FileReader();
+		var oFReader = new FileReader();
 
-    oFReader.readAsDataURL(document.getElementById("images[]").files[0]);
+		oFReader.readAsDataURL(document.getElementById("images[]").files[0]);
 
-    oFReader.onload = function (oFREvent) {
+		oFReader.onload = function (oFREvent) {
 
-      document.getElementById("show_pic").src = oFREvent.target.result;
+			document.getElementById("show_pic").src = oFREvent.target.result;
 
-    };
+		};
 
-  } 
+	} 
 
 </script>
 
