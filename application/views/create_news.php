@@ -27,7 +27,7 @@
 	<div id="draggable" class="ui-widget-content" name="draggable">
 		<img class="img" id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" />
 
-		<input type="file" id="images" class="img_file" name="images" size="20"  onchange="PreviewImage(this);" />
+		<input type="file" id="images" class="img_file" name="images" size="20"   />
 
 		<a class="delete" href="#">delete </a>
 	</div>
@@ -96,7 +96,7 @@ function make_draggable(elements){
 		}
 	});
 	$('#images-'+counts[0]).change(function() {
-		PreviewImage(this);
+		PreviewImage(this).parent();
 	});
 }
 
