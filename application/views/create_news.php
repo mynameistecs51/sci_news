@@ -11,7 +11,8 @@
 		/*#draggable { cursor: move; }*/
 		#containment-wrapper { width: 95%; height:500px; border:2px solid #ccc; padding: 10px; border: dotted 1px black; }
 		.delete{color:red; display: none;}
-		.hiddent-file{display: none;}
+		/*.hiddent-file{display: none;}*/
+		.img_file{display: none;}
 		/*#draggable:hover .delete{display: block}*/
 		.ui-draggable-handle:hover .delete{display: block;}
 		h3 { clear: left; }
@@ -26,7 +27,7 @@
 	<div id="draggable" class="ui-widget-content" name="draggable">
 		<img class="img" id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" />
 
-		<input type="file" id="images" class="hiddent-file" name="images" size="20" onchange="PreviewImage(this);" />
+		<input type="file" id="images" class="img_file" name="images" size="20" onchange="PreviewImage(this);" />
 		<a class="delete" href="#">delete </a>
 	</div>
 
@@ -63,12 +64,15 @@
 						//Pointing to the ui-widget-content class in containment-wrapper and add new class.
 						$("#containment-wrapper .ui-widget-content").addClass("item-"+counts[0]);
 						$("#containment-wrapper .img").addClass("imgSize-"+counts[0]);
+						$("#containment-wrapper .img_file").addClass('img_upload-'+counts[0]);
+						$('#containment-wrapper #images').attr('id','images-'+counts[0]);
+						$('#containment-wrapper #show_pic').attr('id','show_pic-'+counts[0]);
 
 						//Remove the current class (ui-draggable and ui-widget-content)
 						$("#containment-wrapper .item-"+counts[0]).removeClass("ui-widget-content ui-draggable ui-draggable-dragging");
 
 						$('.item-'+counts[0]).dblclick(function(){
-							$('#images').click();
+							$('#images-'+counts[0]).click();
 						});
 
 						$('.delete').click(function() {
@@ -96,11 +100,11 @@
 
  				var oFReader = new FileReader();
 
- 				oFReader.readAsDataURL(document.getElementById("images").files[0]);
+ 				oFReader.readAsDataURL(document.getElementById("images-"+counts[0]).files[0]);
 
  				oFReader.onload = function (oFREvent) {
 
- 					document.getElementById("show_pic").src = oFREvent.target.result;
+ 					document.getElementById("show_pic-"+counts[0]).src = oFREvent.target.result;
 
  				};
 
