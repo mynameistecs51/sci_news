@@ -38,6 +38,7 @@ class Sci_con extends CI_Controller{
 			// 	);
 
 			$query = array(
+				'user_id'=>'',
 				'user_facebook_id' => $fb_data['me']['id'],
 				'user_first_name' => $fb_data['me']['first_name'],
 				'user_last_name' => $fb_data['me']['last_name'],

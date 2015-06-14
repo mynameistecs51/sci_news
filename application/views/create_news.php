@@ -27,7 +27,8 @@
 	<div id="draggable" class="ui-widget-content" name="draggable">
 		<img class="img" id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" />
 
-		<input type="file" id="images" class="img_file" name="images" size="20" onchange="PreviewImage(this);" />
+		<input type="file" id="images" class="img_file" name="images" size="20"  onchange="PreviewImage(this);" />
+
 		<a class="delete" href="#">delete </a>
 	</div>
 
@@ -64,12 +65,13 @@
 						//Pointing to the ui-widget-content class in containment-wrapper and add new class.
 						$("#containment-wrapper .ui-widget-content").addClass("item-"+counts[0]);
 						$("#containment-wrapper .img").addClass("imgSize-"+counts[0]);
-						$("#containment-wrapper .img_file").addClass('img_upload-'+counts[0]);
-						$('#containment-wrapper #images').attr('id','images-'+counts[0]);
-						$('#containment-wrapper #show_pic').attr('id','show_pic-'+counts[0]);
 
 						//Remove the current class (ui-draggable and ui-widget-content)
 						$("#containment-wrapper .item-"+counts[0]).removeClass("ui-widget-content ui-draggable ui-draggable-dragging");
+
+						// $("#containment-wrapper .img_file").addClass('img_upload-'+counts[0]);	//input file upload
+						$('#containment-wrapper #images').attr('id','images-'+counts[0]);	//input file upload
+						$('#containment-wrapper #show_pic').attr('id','show_pic-'+counts[0]);	//show picture upload
 
 						$('.item-'+counts[0]).dblclick(function(){
 							$('#images-'+counts[0]).click();
@@ -85,22 +87,23 @@
 				}
 			});
 
- 			var zIndex = 0;
- 			function make_draggable(elements){
- 				elements.draggable({
- 					containment:'parent',
- 					start:function(e,ui){ ui.helper.css('z-index',++zIndex); },
- 					stop:function(e,ui){
- 					}
- 				});
- 			}
+var zIndex = 0;
+function make_draggable(elements){
+	elements.draggable({
+		containment:'parent',
+		start:function(e,ui){ ui.helper.css('z-index',++zIndex); },
+		stop:function(e,ui){
+		}
+	});
+	$('#images-'+counts[0]).change(function() {
+		PreviewImage(this);
+	});
+}
 
  			//functon preview file upload
  			function PreviewImage() {
 
  				var oFReader = new FileReader();
-
- 				oFReader.readAsDataURL(document.getElementById("images-"+counts[0]).files[0]);
 
  				oFReader.onload = function (oFREvent) {
 
@@ -108,8 +111,9 @@
 
  				};
 
- 			} 
+ 				oFReader.readAsDataURL(document.getElementById("images-"+counts[0]).files[0]);
 
+ 			}
  		});
 </script>
 </body>
