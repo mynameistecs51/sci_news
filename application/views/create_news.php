@@ -71,14 +71,16 @@
 
  			$("#containment-wrapper").droppable({
  				drop: function(e, ui){
- 					if(ui.draggable.hasClass("ui-widget-content")) {
+ 					if(ui.draggable.hasClass("ui-widget-content") || ui.draggable.hasClass('text_area')) {
  						$(this).append($(ui.helper).clone());
 						//Pointing to the ui-widget-content class in containment-wrapper and add new class.
 						$("#containment-wrapper .ui-widget-content").addClass("item-"+counts[0]);
 						$("#containment-wrapper .img").addClass("imgSize-"+counts[0]);
+						$("#containment-wrapper .text_area").addClass('text_area-'+counts[0]);	//add textarea
 
 						//Remove the current class (ui-draggable and ui-widget-content)
 						$("#containment-wrapper .item-"+counts[0]).removeClass("ui-widget-content ui-draggable ui-draggable-dragging");
+						$("#containment-wrapper .text_area-"+counts[0]).removeClass('text_area ui-draggable ui-draggable-handle ui-draggable-dragging')
 
 						// $("#containment-wrapper .img_file").addClass('img_upload-'+counts[0]);	//input file upload
 						$('#containment-wrapper #images').attr('id','images-'+counts[0]);	//input file upload
@@ -92,7 +94,9 @@
 							$(this).parent().remove();
 						});
 						make_draggable($(".item-"+counts[0])); 
+						make_draggable($(".text_area-"+counts[0]));
 						$(".imgSize-"+counts[0]).resizable(resizeOpts);
+
 					}
 
 				}
