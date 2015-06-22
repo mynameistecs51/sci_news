@@ -85,7 +85,7 @@
 						$('#containment-wrapper #show_pic').attr('id','show_pic-'+counts[0]);	//show picture upload
 
 						$('.item-'+counts[0]).dblclick(function(){
-							$('#obj_textarea-'+counts[0]).click();
+							$('#images-'+counts[0]).click();
 						});
 
 						$('.delete').click(function() {
