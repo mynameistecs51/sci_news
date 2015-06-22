@@ -249,5 +249,15 @@ private function _upload_files($field='userfile'){
 			$this->load->view('create_news',$data);
 		}
 
+		function fck_editor(){
+			$fb_data = $this->session->userdata('fb_data');
+
+			$data = array(
+				'title' => 'create news fckeditor',
+				'fb_data' => $fb_data,
+			);
+			$this->load->view('fckeditor',$data);
+		}
+
 	}
 	?>
