@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>test fckeditor</title>
-	<script type="text/javascript" src="<?php echo base_url();?>fckeditor/fckedit.js"></script>
+	<script type="text/javascript" src="<?php echo base_url();?>fckeditor/fckeditor.js"></script>
 </head>
 <body>
 	<textarea name="detail" id="detail"></textarea>
