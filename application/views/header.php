@@ -88,6 +88,9 @@
             <li>
             <?php echo anchor('sci_con/create_news','<i class="glyphicon glyphicon-file"></i>จดหมายข่าว','class="active"');?>
             </li>
+            <li>
+              <?php echo anchor('sci_con/fck_editor' ,'<i class="glyphicon glyphicon-file"></i>fckeditor','class="active"');?>
+            </li>
           </ul>
         </div>
         <!-- /.sidebar-collapse -->
