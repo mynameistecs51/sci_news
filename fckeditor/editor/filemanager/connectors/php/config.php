@@ -30,7 +30,7 @@ global $Config ;
 $Config['Enabled'] = true ;
 
 // Path to user files relative to the document root.
-$Config['WebBasePath'] = 'http://localhost/sci_news/file_upload';
+$Config['WebBasePath'] = 'http://localhost/sci_news/file_upload/';
 // Path of this location fckeditor/editor/filemanager/connectors/php/this
 $Config['UserFilesPath'] = '../../../../../file_upload/' ;
 
