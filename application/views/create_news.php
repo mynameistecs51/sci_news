@@ -13,8 +13,10 @@
 		.img_file{display: none;}
 		/*#draggable:hover .delete{display: block}*/
 		.ui-draggable-handle:hover .delete{display: block;}
+		.ui-draggable-handle:hover {cursor: move;}
 		#obj{display: block; }
 		#obj_text {width:10px;height: 380px;padding: 0.5em; cursor: move; display: inline; border: 1;}
+		#obj_text:hover{cursor: move;}
 
 		h3 { clear: left; }
 	</style>
@@ -105,8 +107,9 @@
 var zIndex = 0;
 function make_draggable(elements){
 	elements.draggable({
+		cursor: "move",
 		containment:'parent',
-		start:function(e,ui){ ui.helper.css('z-index',++zIndex); },
+		start:function(e,ui){ ui.helper.css('z-index',++zIndex, "hover{'cursor:move'}"); },
 		stop:function(e,ui){
 		}
 	});
