@@ -13,9 +13,10 @@
 		.img_file{display: none;}
 		/*#draggable:hover .delete{display: block}*/
 		.ui-draggable-handle:hover .delete{display: block;}
+		#obj_textarea :hover .delete{display: block;}
 		.ui-draggable-handle:hover {cursor: move;}
 		#obj{display: block; }
-		#obj_text {width:10px;height: 380px;padding: 0.5em; cursor: move; display: inline; border: 1;}
+		#obj_text {width:10px;height: 380px; cursor: move; display: inline; border: 1;}
 		#obj_text:hover{cursor: move;}
 
 		h3 { clear: left; }
@@ -37,11 +38,11 @@
 
 		</div>
 		<div id="obj_text" class="text_area" >
-			<textarea rows="4" cols="50" id="obj_textarea" >
-				ข้อความ
-			</textarea>
+			<textarea rows="4" cols="50" id="obj_textarea" >ข้อความ</textarea>
+			<a class="delete" href="#">delete </a>
 		</div>
 		<br/>
+
 	</div>
 
 	<br/><br/>
