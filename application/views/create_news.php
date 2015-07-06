@@ -110,8 +110,18 @@ function make_draggable(elements){
 	elements.draggable({
 		cursor: "move",
 		containment:'parent',
-		start:function(e,ui){ ui.helper.css('z-index',++zIndex, "hover{'cursor:move'}"); },
-		stop:function(e,ui){
+		start:function(e,ui){ ui.helper.css('z-index',++zIndex, "hover{'cursor:move'}");
+		var h = $('#show_pic-'+counts[0]).height();
+		var w = $('#show_pic-'+counts[0]).width();
+		console.log('w: '+ w);
+	},
+	stop:function(e,ui){
+		var offset= $(this).offset();
+		var x = e.pageX-offset.left;
+		var y = e.pageY-offset.top;
+		var h = $('#show_pic-'+counts[0]).height();
+		var w = $('#show_pic-'+counts[0]).width();
+			console.log ('x='+ x +'\n'+'y='+y +"\n"+"h="+h+"\n"+"w="+w+"\n"+"id_name=" +"show_pic-"+counts[0] );		//show poperty
 		}
 	});
 	$('#images-'+counts[0]).change(function() {
