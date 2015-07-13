@@ -59,68 +59,67 @@
 	<script src="<?php echo base_url();?>js/jquery-ui-1.11.4.custom/external/jquery/jquery.js"></script>
 	<script src="<?php echo base_url();?>js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
 	<script>
-		$(function(){  
- 			//Make every clone image unique.  
- 			var counts = [0];
- 			var resizeOpts = { 
- 				handles: "all" ,autoHide:true
- 			};    
- 			$(".ui-widget-content , .text_area").draggable({
- 				helper: "clone",
- 				cursor: "move",
-                         	//Create counter
-                         	start: function() { counts[0]++; }
-                         });
+		$(function(){
+	 			//Make every clone image unique.
+	 			var counts = [0];
+	 			var resizeOpts = { 
+	 				handles: "all" ,autoHide:true
+	 			};
 
- 			$("#containment-wrapper").droppable({
- 				drop: function(e, ui){
- 					if(ui.draggable.hasClass("ui-widget-content") || ui.draggable.hasClass('text_area')) {
- 						$(this).append($(ui.helper).clone());
-						//Pointing to the ui-widget-content class in containment-wrapper and add new class.
-						$("#containment-wrapper .ui-widget-content").addClass("item-"+counts[0]);
-						$("#containment-wrapper .img").addClass("imgSize-"+counts[0]);
-						$("#containment-wrapper .text_area").addClass('text_area-'+counts[0]);	//add textarea
+	 			$(".ui-widget-content , .text_area").draggable({
+	 				helper: "clone",
+	 				cursor: "move",
+	                         	//Create counter
+	                         	start: function() { counts[0]++; }
+	                         });
 
-						//Remove the current class (ui-draggable and ui-widget-content)
-						$("#containment-wrapper .item-"+counts[0]).removeClass("ui-widget-content ui-draggable ui-draggable-dragging");
-						$("#containment-wrapper .text_area-"+counts[0]).removeClass('text_area ui-draggable ui-draggable-handle ui-draggable-dragging')
+	 			$("#containment-wrapper").droppable({
+	 				drop: function(e, ui){
+	 					if(ui.draggable.hasClass("ui-widget-content") || ui.draggable.hasClass('text_area')) {
 
-						// $("#containment-wrapper .img_file").addClass('img_upload-'+counts[0]);	//input file upload
-						$('#containment-wrapper #images').attr('id','images-'+counts[0]);	//input file upload
-						$('#containment-wrapper #show_pic').attr('id','show_pic-'+counts[0]);	//show picture upload
+	 						$(this).append($(ui.helper).clone());
+							//Pointing to the ui-widget-content class in containment-wrapper and add new class.
+							$("#containment-wrapper .ui-widget-content").addClass("item-"+counts[0]);
+							$("#containment-wrapper .img").addClass("imgSize-"+counts[0]);
+							$("#containment-wrapper .text_area").addClass('text_area-'+counts[0]);	//add textarea
 
-						$('.item-'+counts[0]).dblclick(function(){
-							$('#images-'+counts[0]).click();
-						});
+							//Remove the current class (ui-draggable and ui-widget-content)
+							$("#containment-wrapper .item-"+counts[0]).removeClass("ui-widget-content ui-draggable ui-draggable-dragging");
+							$("#containment-wrapper .text_area-"+counts[0]).removeClass('text_area ui-draggable ui-draggable-handle ui-draggable-dragging');
 
-						$('.delete').click(function() {
-							$(this).parent().remove();
-						});
-						make_draggable($(".item-"+counts[0])); 
-						make_draggable($(".text_area-"+counts[0]));
-						$(".imgSize-"+counts[0]).resizable(resizeOpts);
+							// $("#containment-wrapper .img_file").addClass('img_upload-'+counts[0]);	//input file upload
+							$('#containment-wrapper #images').attr('id','images-'+counts[0]);	//input file upload
+							$('#containment-wrapper #show_pic').attr('id','show_pic-'+counts[0]);	//show picture upload
 
+							$('.item-'+counts[0]).dblclick(function(){
+								$('#images-'+counts[0]).click();
+							});
+
+							$('.delete').click(function() {
+								$(this).parent().remove();
+							});
+							make_draggable($(".item-"+counts[0]));
+							make_draggable($(".text_area-"+counts[0]));
+							$(".imgSize-"+counts[0]).resizable(resizeOpts);
+						}
 					}
-
-				}
-			});
+				});
 
 var zIndex = 0;
 function make_draggable(elements){
 	elements.draggable({
 		cursor: "move",
 		containment:'parent',
-		start:function(e,ui){ ui.helper.css('z-index',++zIndex, "hover{'cursor:move'}");
-		var h = $('#show_pic-'+counts[0]).height();
-		var w = $('#show_pic-'+counts[0]).width();
-		console.log('w: '+ w);
-	},
-	stop:function(e,ui){
-		var offset= $(this).offset();
-		var x = e.pageX-offset.left;
-		var y = e.pageY-offset.top;
-		var h = $('#show_pic-'+counts[0]).height();
-		var w = $('#show_pic-'+counts[0]).width();
+		start:function(e,ui){
+			ui.helper.css('z-index',++zIndex);
+		},
+		stop:function(e,ui){
+			var offset= $(this).offset();
+			var x = e.pageX-offset.left;
+			var y = e.pageY-offset.top;
+			var h = $('#show_pic'+counts[0]).height();
+			var w = $('#show_pic-'+counts[0]).width();
+
 			console.log ('x='+ x +'\n'+'y='+y +"\n"+"h="+h+"\n"+"w="+w+"\n"+"id_name=" +"show_pic-"+counts[0] );		//show poperty
 		}
 	});
@@ -129,21 +128,21 @@ function make_draggable(elements){
 	});
 }
 
- 			//functon preview file upload
- 			function PreviewImage() {
+	 			//functon preview file upload
+	 			function PreviewImage() {
 
- 				var oFReader = new FileReader();
+	 				var oFReader = new FileReader();
 
- 				oFReader.onload = function (oFREvent) {
+	 				oFReader.onload = function (oFREvent) {
 
- 					document.getElementById("show_pic-"+counts[0]).src = oFREvent.target.result;
+	 					document.getElementById("show_pic-"+counts[0]).src = oFREvent.target.result;
 
- 				};
+	 				};
 
- 				oFReader.readAsDataURL(document.getElementById("images-"+counts[0]).files[0]);
+	 				oFReader.readAsDataURL(document.getElementById("images-"+counts[0]).files[0]);
 
- 			}
- 		});
+	 			}
+	 		});
 </script>
 </body>
 </html>
