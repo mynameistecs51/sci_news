@@ -98,38 +98,52 @@
 				<div class="row ">
 					<label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
 					<?php 
-						$picture_name_array = explode(',', $row_news->news_file_upload);
-						foreach ($picture_name_array as $key => $value_detail) { //show picture
+					$picture_name_array = explode(',', $row_news->news_file_upload);
+						foreach ($picture_name_array as $value_detail) { //show picture
+							//echo $count_picture = count($picture_name_array);
 							?>
-					<div class="col-xs-6 col-md-2">
+							<div class="col-xs-6 col-md-2">
 						<!-- <img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
 						<input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>-->
-							<div class="show_images thumbnail">
-								<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
-									<img src="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>"alt="" style="width:128px;"/>
-								</a>
-								<a class="update" href="#">update</a>
-								<a class="delete" href="#">delate</a>
-							</div>
+						<div class="show_images thumbnail">
+							<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
+								<img src="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>"alt="" style="width:128px;"/>
+							</a>
+							<a class="update" href="#">update</a>
+							<a class="delete" href="#">delate</a>
 						</div>
-						<?php
-					}
-					?>
-				</div>
+					</div>
+					<?php
+				}
+				?>
+			</div>
 
-				<?php } ?>
-				<div> 
-				</div>
-				<div class="col-sm-offset-8  col-xs-4">
-					<button type="reset" class="btn btn-warning" value="reset">reset</button>
-					<button type="submit" class="btn btn-success" value="save">update</button>
-				</div>
-				<?php echo form_close(); ?>
-			</div>  <!-- --- end class="row col-md-offset-2" --------- -->
+			<?php } ?>
+			<div> 
+			</div>
+			<div class="col-sm-offset-8  col-xs-4">
+				<button type="reset" class="btn btn-warning" value="reset">reset</button>
+				<button type="submit" class="btn btn-success" value="save">update</button>
+			</div>
+			<?php echo form_close(); ?>
+		</div>  <!-- --- end class="row col-md-offset-2" --------- -->
 
-			<hr> 
-		</div>
+		<hr> 
 	</div>
-	<!-- end jquery reader upload picture -->
-	<!-- /#page-wrapper -->
-	<?php $this->load->view('footer');?>
+</div>
+<!-- end jquery reader upload picture -->
+<!-- /#page-wrapper -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.delete').click(function() {
+			$(this).parent().remove();
+			return false;
+		});
+
+		$('.update').click(function() {
+			//$(this).parent().alert('name');
+			console.log($(this).parent());
+		});
+	});
+</script>
+<?php $this->load->view('footer');?>
