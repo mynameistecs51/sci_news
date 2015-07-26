@@ -56,7 +56,7 @@
       <!-- Navigation -->
       <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.html">Science Admin </a>
+          <?php echo anchor('sci_con', 'Scicence Admin', 'class="navbar-brand"');?>
         </div>
         <!-- /.navbar-header --> 
         <div class="row col-xs-offset-3 col-md-7" >  

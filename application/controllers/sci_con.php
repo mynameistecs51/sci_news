@@ -201,7 +201,7 @@ private function _upload_files($field='userfile'){
             // or take any other action you need
 				$data['title'] = "SCI NEWS";
 
-			//$this->load->view('list_news',$data);			
+			//$this->load->view('list_news',$data);
 				redirect('sci_con/list_news/','refresh');
 			}
 			else
@@ -221,13 +221,25 @@ private function _upload_files($field='userfile'){
 			foreach ($query_delete_file as $tabel_news => $row_news) {
 				$pic_name_explode = explode(",", $row_news->news_file_upload);
 				for($i = 0; $i < count($pic_name_explode); $i++){
-					unlink('../scinews/file_upload/pict_news/'.$pic_name_explode[$i]);
+					unlink('file_upload/pict_news/'.$pic_name_explode[$i]);
 				}//end for
 
 			} //end foreach 
 			$this->sci_m->delete_news($news_id);
 			redirect('sci_con/','refresh');
-		}	
+		}
+
+		public function edit_news($news_id){
+			$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
+
+			$data = array(
+				'title' => "edit news",
+				'fb_data' => $fb_data,
+				'get_news' =>  $this->sci_m->get_news_id($news_id),
+				);
+
+			$this->load->view('admin/edit_news',$data);
+		}
 
 		public function logout() {
 			setcookie('PHPSESSID', '', time()-3600, "/");
@@ -255,7 +267,7 @@ private function _upload_files($field='userfile'){
 			$data = array(
 				'title' => 'create news fckeditor',
 				'fb_data' => $fb_data,
-			);
+				);
 			$this->load->view('fckeditor',$data);
 		}
 

@@ -69,9 +69,9 @@
 	 			$(".ui-widget-content , .text_area").draggable({
 	 				helper: "clone",
 	 				cursor: "move",
-	                         	//Create counter
-	                         	start: function() { counts[0]++; }
-	                         });
+	                //Create counter
+	                start: function() { counts[0]++; }
+	            });
 
 	 			$("#containment-wrapper").droppable({
 	 				drop: function(e, ui){
