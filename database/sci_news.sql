@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 30, 2014 at 03:21 AM
--- Server version: 5.6.21
--- PHP Version: 5.5.19
+-- Host: 127.0.0.1
+-- Generation Time: Jul 26, 2015 at 10:53 AM
+-- Server version: 5.6.24
+-- PHP Version: 5.5.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -27,24 +27,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-`news_id` int(11) NOT NULL,
+  `news_id` int(11) NOT NULL,
   `news_title` varchar(255) NOT NULL,
   `news_detail` text NOT NULL,
   `news_file_upload` text NOT NULL,
   `news_date` datetime NOT NULL,
   `news_post` char(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`news_id`, `news_title`, `news_detail`, `news_file_upload`, `news_date`, `news_post`) VALUES
-(2, 'test', 'test detail', 'WP_25571025_12_51_11_Pro_1.jpg,WP_25571025_12_52_04_Pro_3.jpg', '2014-11-18 08:41:00', ''),
-(3, 'test1', 'test1', 'WP_25571025_11_46_02_Pro_1.jpg,WP_25571025_11_46_09_Pro_1.jpg,WP_25571025_11_46_16_Pro_1.jpg', '2014-11-18 10:49:00', ''),
-(4, 'test', 'test', 'WP_25571025_13_25_29_Pro_1.jpg', '2014-11-23 12:56:00', ''),
-(5, 'test', 'test', 'WP_25571025_11_38_46_Pro_2.jpg', '2014-11-23 12:57:00', ''),
-(6, 't', 't', '', '2014-11-28 17:32:00', '883465988338347');
+(28, 'test', 'test test', '17642_1646416812238402_3943772329072000877_n.jpg', '2015-07-26 11:27:00', '887552217929724'),
+(29, 'ทดสอบ', 'ทดสอบ ', '17642_1646416812238402_3943772329072000877_n1.jpg,264934_223780477647332_3304517_n.jpg,886045-img.ralp3u_.4x1oi_.gif,10157271_880156868726275_3410941245831092370_n.jpg', '2015-07-26 11:58:00', '887552217929724');
 
 -- --------------------------------------------------------
 
@@ -66,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_facebook_id`, `user_first_name`, `user_last_name`, `user_email`, `user_gender`) VALUES
-(0, '883465988338347', 'เต้', 'ไชยวัฒน์', 'mynameistecs51@gmail.com', 'male');
+(0, '887552217929724', 'เต้', 'ไชยวัฒน์', 'mynameistecs51@gmail.com', 'male');
 
 --
 -- Indexes for dumped tables
@@ -76,13 +73,13 @@ INSERT INTO `users` (`user_id`, `user_facebook_id`, `user_first_name`, `user_las
 -- Indexes for table `news`
 --
 ALTER TABLE `news`
- ADD PRIMARY KEY (`news_id`);
+  ADD PRIMARY KEY (`news_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
- ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -92,7 +89,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
