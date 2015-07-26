@@ -1,23 +1,6 @@
 <?php $this->load->view('header');?>
 
 <script type="text/javascript">
-
-	function PreviewImage() {
-
-		var oFReader = new FileReader();
-
-		oFReader.readAsDataURL(document.getElementById("images[]").files[0]);
-
-		oFReader.onload = function (oFREvent) {
-
-			document.getElementById("show_pic").src = oFREvent.target.result;
-
-		};
-
-	} 
-
-</script>
-<script type="text/javascript">
 	$(document).ready(function() {
 		$('.fancybox').fancybox();
 			// Change title type, overlay closing speed
@@ -33,6 +16,20 @@
 			});
 
 		});
+
+
+	function PreviewImage() {  //show picture on click
+
+		var oFReader = new FileReader();
+
+		oFReader.readAsDataURL(document.getElementById("images[]").files[0]);
+
+		oFReader.onload = function (oFREvent) {
+
+			document.getElementById("show_pic").src = oFREvent.target.result;
+
+		};
+	}
 </script>
 <style type="text/css">
 	.fancybox-custom .fancybox-skin {
@@ -81,7 +78,7 @@
 	<div class="row  col-md-12 ">
 
 		<div class="row">
-			<?php echo form_open_multipart('sci_con/do_upload/',' class="form-horizontal" role="form" ');?>
+			<?php echo form_open_multipart('sci_con/edit#/',' class="form-horizontal" role="form" ');?>
 			<?php 
 			foreach($get_news as $row_news){
 				?>
@@ -100,16 +97,18 @@
 					<?php 
 					$picture_name_array = explode(',', $row_news->news_file_upload);
 						foreach ($picture_name_array as $value_detail) { //show picture
-							//echo $count_picture = count($picture_name_array);
 							?>
 							<div class="col-xs-6 col-md-2">
 						<!-- <img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
 						<input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>-->
 						<div class="show_images thumbnail">
 							<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
-								<img src="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>"alt="" style="width:128px;"/>
+								<img src="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>"alt=""  />
+
 							</a>
-							<a class="update" href="#">update</a>
+							<a class="update" href="#">update
+								<input type="hidden" id="id_picture-<?php echo $count;?>" name="id_picture" value="<?php echo $value_detail ;?>"> 
+							</a>
 							<a class="delete" href="#">delate</a>
 						</div>
 					</div>
@@ -142,7 +141,7 @@
 
 		$('.update').click(function() {
 			//$(this).parent().alert('name');
-			console.log($(this).parent());
+			console.log($('.id_picture').attr('value'));
 		});
 	});
 </script>
