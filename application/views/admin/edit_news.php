@@ -96,7 +96,7 @@
 					<label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
 					<?php 
 					$picture_name_array = explode(',', $row_news->news_file_upload);
-						foreach ($picture_name_array as $value_detail) { //show picture
+						foreach ($picture_name_array as $key=>$value_detail) { //show picture
 							?>
 							<div class="col-xs-6 col-md-2">
 						<!-- <img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
@@ -107,7 +107,7 @@
 
 							</a>
 							<a class="update" href="#">update
-								<input type="hidden" id="id_picture-<?php echo $count;?>" name="id_picture" value="<?php echo $value_detail ;?>"> 
+								<input type="hidden" id="id_picture" name="id_picture" value="<?php echo $value_detail ;?>"> 
 							</a>
 							<a class="delete" href="#">delate</a>
 						</div>
