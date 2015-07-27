@@ -3,19 +3,19 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.fancybox').fancybox();
-			// Change title type, overlay closing speed
-			$(".fancybox-effects-a").fancybox({
-				helpers: {
-					title : {
-						type : 'outside'
-					},
-					overlay : {
-						speedOut : 0
-					}
+		// Change title type, overlay closing speed
+		$(".fancybox-effects-a").fancybox({
+			helpers: {
+				title : {
+					type : 'outside'
+				},
+				overlay : {
+					speedOut : 0
 				}
-			});
-
+			}
 		});
+
+	});
 
 
 	function PreviewImage() {  //show picture on click
@@ -66,14 +66,14 @@
 
 	}
 </style>
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="page-header">แก้ไขข่าว</h1>
+<div class="row ">
+	<div class="row col-md-12">
+		<div class="col-lg-12">
+			<h1 class="page-header">แก้ไขข่าว</h1>
+		</div>
+		<!-- /.col-lg-12 -->
 	</div>
-	<!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<div class="row">
+	<!-- /.row -->
 
 	<div class="row  col-md-12 ">
 
@@ -83,44 +83,55 @@
 			foreach($get_news as $row_news){
 				?>
 				<div class="form-group col-sm-12">
-					<label for="input_detail" class="col-sm-2 control-label">หัวข้อข่าว </label>
+					<label for="input_headnews" class="col-sm-2 control-label">หัวข้อข่าว </label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="input_title" name="input_title" value="<?php echo $row_news->news_title;?>"> <br/>
 					</div>
+					<label for="input_files" class="col-sm-2">เพิ่มรูปภาพ</label>
+					<div class="col-sm-4 ">
+						<img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
+						<input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>
+					</div>
+				</div>
+				<div id="form-group col-sm-12">
 					<label for="input_detail" class="col-sm-2 control-label">รายละเอียด </label>
 					<div class="col-sm-4">
 						<textarea class="form-control" rows="4" cols="5" id="input_detail" name="input_detail"><?php echo $row_news->news_detail;?></textarea>
 					</div>
 				</div>
-				<div class="row ">
+				<div class="row col-md-12">
 					<label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
 					<?php 
 					$picture_name_array = explode(',', $row_news->news_file_upload);
-						foreach ($picture_name_array as $key=>$value_detail) { //show picture
-							?>
-							<div class="col-xs-6 col-md-2">
-						<!-- <img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
-						<input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>-->
-						<div class="show_images thumbnail">
-							<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
-								<img src="<?php echo base_url().'file_upload/pict_news/'.$value_detail;?>"alt=""  />
+					$c = count($picture_name_array);
+					for($i=0; $i < $c; $i++){
+						?>
+						<div class="col-xs-6 col-md-2">
+							<div class="show_images thumbnail" id="show_pic-[<?php echo $i;?>]">
+								<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
+									<img src="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>"alt=""   id="images[<?php echo $i;?>]"/>
 
-							</a>
-							<a class="update" href="#">update
-								<input type="hidden" id="id_picture" name="id_picture" value="<?php echo $value_detail ;?>"> 
-							</a>
-							<a class="delete" href="#">delate</a>
+								</a>
+								<a class="update" id="id_picture[<?php echo $i;?>]" href="#">update
+									<!-- <input type="hidden" id="id_picture[<?php echo $i;?>]" name="id_picture" value="<?php echo $picture_name_array[$i] ;?>">  -->
+								</a>
+								<a class="delete" href="#">delate</a>
+							</div>
 						</div>
-					</div>
-					<?php
-				}
-				?>
+						<?php
+					}
+					?>
+				</div>
+				<?php 
+				// echo "<pre>";
+				// $a = explode(',', $row_news->news_file_upload);
+				// echo count($a);
+					//print_r($row_news->news_file_upload);
+			}
+			?>
+			<div>
 			</div>
-
-			<?php } ?>
-			<div> 
-			</div>
-			<div class="col-sm-offset-8  col-xs-4">
+			<div class="col-xs-12 text-center">
 				<button type="reset" class="btn btn-warning" value="reset">reset</button>
 				<button type="submit" class="btn btn-success" value="save">update</button>
 			</div>
@@ -141,7 +152,7 @@
 
 		$('.update').click(function() {
 			//$(this).parent().alert('name');
-			console.log($('.id_picture').attr('value'));
+			console.log($(this).attr('id'));
 		});
 	});
 </script>
