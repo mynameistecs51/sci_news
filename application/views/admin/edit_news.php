@@ -107,13 +107,13 @@
 					for($i=0; $i < $c; $i++){
 						?>
 						<div class="col-xs-6 col-md-2">
-							<div class="show_images thumbnail" id="show_pic-[<?php echo $i;?>]">
+							<div class="show_images thumbnail" id="show_pic" data-count="0">
 								<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
-									<img src="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>"alt=""   id="images[<?php echo $i;?>]"/>
+									<img src="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>"alt=""   id="images[<?php echo $i;?>]" class="picture"/>
 
 								</a>
-								<a class="update" id="id_picture[<?php echo $i;?>]" href="#">update
-									<!-- <input type="hidden" id="id_picture[<?php echo $i;?>]" name="id_picture" value="<?php echo $picture_name_array[$i] ;?>">  -->
+								<a class="update" id="id_picture[<?php echo $i;?>]" href="#" >update
+									<input type="hidden" id="picture_show[<?php echo $i;?>]" name="picture_show" value="<?php echo $picture_name_array[$i] ;?>" class="picture_show"> 
 								</a>
 								<a class="delete" href="#">delate</a>
 							</div>
@@ -150,7 +150,7 @@
 			return false;
 		});
 
-		$('.update').click(function() {
+		$(' .update').click(function() {
 			//$(this).parent().alert('name');
 			console.log($(this).attr('id'));
 		});
