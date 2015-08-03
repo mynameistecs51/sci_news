@@ -235,7 +235,7 @@ private function _upload_files($field='userfile'){
 			$data = array(
 				'title' => "edit news",
 				'fb_data' => $fb_data,
-				'get_news' =>  $this->sci_m->get_news_id($news_id),
+				'get_news_id' =>  $this->sci_m->get_news_id($news_id),
 				);
 
 			$this->load->view('admin/edit_news',$data);

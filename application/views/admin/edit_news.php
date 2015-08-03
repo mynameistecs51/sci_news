@@ -79,8 +79,12 @@
 
 		<div class="row">
 			<?php echo form_open_multipart('sci_con/edit#/',' class="form-horizontal" role="form" ');?>
-			<?php 
-			foreach($get_news as $row_news){
+			<?php
+			$pict_array =array();
+			foreach($get_news_id as $row_news){
+				if(!isset($pict_array[$row_news->news_id])){
+					$pict_array[$row_news->news_id] = array();
+				}
 				?>
 				<div class="form-group col-sm-12">
 					<label for="input_headnews" class="col-sm-2 control-label">หัวข้อข่าว </label>
@@ -105,29 +109,74 @@
 					$picture_name_array = explode(',', $row_news->news_file_upload);
 					$c = count($picture_name_array);
 					for($i=0; $i < $c; $i++){
+						array_push($pict_array[$row_news->news_id], array('array_title' => $i, 'array_pictName' => $picture_name_array[$i]));
 						?>
-						<div class="col-xs-6 col-md-2">
+						<!-- <div class="col-xs-6 col-md-2">
 							<div class="show_images thumbnail" id="show_pic-[<?php echo $i;?>]">
 								<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
 									<img src="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>"alt=""   id="images[<?php echo $i;?>]"/>
 
 								</a>
 								<a class="update" id="id_picture[<?php echo $i;?>]" href="#">update
-									<!-- <input type="hidden" id="id_picture[<?php echo $i;?>]" name="id_picture" value="<?php echo $picture_name_array[$i] ;?>">  -->
+									<input type="hidden" id="id_picture[<?php echo $i;?>]" name="id_picture" value="<?php echo $pict_array[$row_news->news_id][$array_title] ;?>" /> 
 								</a>
 								<a class="delete" href="#">delate</a>
 							</div>
-						</div>
+						</div> -->
 						<?php
 					}
 					?>
+					<?php foreach ($pict_array[$row_news->news_id] as $row_array) {
+						?>
+						<input type="hidden" id="id_pict" name="name_pict" value="<?php $row_array['array_pictName'];?>">
+						<div class="col-xs-6 col-md-2">
+							<div class="show_images thumbnail" id="show_pic-[<?php echo $i;?>]">
+								<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$row_array['array_pictName'];?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
+									<img src="<?php echo base_url().'file_upload/pict_news/'.$row_array['array_pictName'];?>"alt=""   id="images[<?php echo $i;?>]"/>
+								</a>
+								<!-- <a class="update" id="id_picture[<?php echo $i;?>]" href="#">update</a> -->
+								<button type="button" class="btn btn-primary btn-sm update" data-toggle="modal" data-target="#myModal<?php echo $row_array['array_title'];?>">
+									update
+								</button>
+								<a class="delete" href="#">delate</a>
+							</div>
+						</div>
+						<!-- Modal -->
+						<div class="modal fade" id="myModal<?php echo $row_array['array_title'];?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+									</div>
+									<div class="modal-body">
+										<?php
+
+										echo $row_array['array_title'];
+										echo "<br/>";
+										echo $row_array['array_pictName'];
+										echo "<br/>";
+										echo $this->input->post('name_pict');
+
+										?>
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Save changes</button>
+									</div>
+								</div>
+							</div>
+						</div><!-- end modal -->
+						<?php 
+					}
+					?>
 				</div>
-				<?php 
-				// echo "<pre>";
-				// $a = explode(',', $row_news->news_file_upload);
-				// echo count($a);
-					//print_r($row_news->news_file_upload);
+				<?php
 			}
+			// echo '---------';
+			// print_r($pict_array);
+			// echo '----------';
 			?>
 			<div>
 			</div>
@@ -137,23 +186,23 @@
 			</div>
 			<?php echo form_close(); ?>
 		</div>  <!-- --- end class="row col-md-offset-2" --------- -->
-
 		<hr> 
 	</div>
 </div>
 <!-- end jquery reader upload picture -->
 <!-- /#page-wrapper -->
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(function() {
 		$('.delete').click(function() {
 			$(this).parent().remove();
 			return false;
 		});
 
-		$('.update').click(function() {
-			//$(this).parent().alert('name');
-			console.log($(this).attr('id'));
-		});
-	});
+		// $('.update').click(function() {
+		// 	//$(this).parent().alert('name');
+		// 	// console.log($('.update input[type=hidden]').attr('id'));
+		// 	$('#myModal').modal('show');
+		// });
+});
 </script>
 <?php $this->load->view('footer');?>
