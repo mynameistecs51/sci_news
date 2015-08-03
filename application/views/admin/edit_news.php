@@ -71,7 +71,7 @@
 		<div class="col-lg-12">
 			<h1 class="page-header">แก้ไขข่าว</h1>
 		</div>
-		<!-- /.col-lg-12 -->
+		<!-- /.col-lg-12 --> 
 	</div>
 	<!-- /.row -->
 
