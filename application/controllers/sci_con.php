@@ -16,7 +16,7 @@ class Sci_con extends CI_Controller{
 		// $this->load->view('admin/index',$data);
 		$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
 		//print_r( $fb_data);
-		
+
 		if((!$fb_data['uid']) or (!$fb_data['me']))
 		{
             // If this is a protected section that needs user authentication
@@ -50,7 +50,7 @@ class Sci_con extends CI_Controller{
 			// $this->load->view('list_news', $data);
 			redirect('sci_con/list_news','refresh');
 		}else{
-			
+
 			$data = array(
 				'title' => "SCI NEWS..[3]",
 				'fb_data' => $fb_data,
@@ -229,6 +229,10 @@ private function _upload_files($field='userfile'){
 			redirect('sci_con/','refresh');
 		}
 
+		public function delete_updatePicture($news_id1,$array_pic){
+			echo $news_id1."<br/>";
+			echo $array_pic."<br/>";
+		}
 		public function edit_news($news_id){
 			$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
 

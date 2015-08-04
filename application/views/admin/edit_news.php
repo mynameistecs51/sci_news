@@ -1,36 +1,5 @@
 <?php $this->load->view('header');?>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.fancybox').fancybox();
-		// Change title type, overlay closing speed
-		$(".fancybox-effects-a").fancybox({
-			helpers: {
-				title : {
-					type : 'outside'
-				},
-				overlay : {
-					speedOut : 0
-				}
-			}
-		});
-
-	});
-
-
-	function PreviewImage() {  //show picture on click
-
-		var oFReader = new FileReader();
-
-		oFReader.readAsDataURL(document.getElementById("images[]").files[0]);
-
-		oFReader.onload = function (oFREvent) {
-
-			document.getElementById("show_pic").src = oFREvent.target.result;
-
-		};
-	}
-</script>
 <style type="text/css">
 	.fancybox-custom .fancybox-skin {
 		box-shadow: 0 0 50px #222;
@@ -102,28 +71,21 @@
 					<div class="col-sm-4">
 						<textarea class="form-control" rows="4" cols="5" id="input_detail" name="input_detail"><?php echo $row_news->news_detail;?></textarea>
 					</div>
+
+					<div class="col-xs-6 text-center">
+						<button type="reset" class="btn btn-warning" value="reset">reset</button>
+						<button type="submit" class="btn btn-success" value="save">update</button>
+					</div>
 				</div>
-				<div class="row col-md-12">
+				<?php echo form_close(); ?>
+				<div class="form-group col-md-12"><hr/></div>
+				<div class="form-group col-md-12">
 					<label for="input_picture" class="col-sm-2 control-label">รูปภาพ   </label>
 					<?php 
 					$picture_name_array = explode(',', $row_news->news_file_upload);
 					$c = count($picture_name_array);
 					for($i=0; $i < $c; $i++){
 						array_push($pict_array[$row_news->news_id], array('array_title' => $i, 'array_pictName' => $picture_name_array[$i]));
-						?>
-						<!-- <div class="col-xs-6 col-md-2">
-							<div class="show_images thumbnail" id="show_pic-[<?php echo $i;?>]">
-								<a class="fancybox" href="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>" data-fancybox-group="gallery" title="<?php echo $row_news->news_title;?>">
-									<img src="<?php echo base_url().'file_upload/pict_news/'.$picture_name_array[$i];?>"alt=""   id="images[<?php echo $i;?>]"/>
-
-								</a>
-								<a class="update" id="id_picture[<?php echo $i;?>]" href="#">update
-									<input type="hidden" id="id_picture[<?php echo $i;?>]" name="id_picture" value="<?php echo $pict_array[$row_news->news_id][$array_title] ;?>" /> 
-								</a>
-								<a class="delete" href="#">delate</a>
-							</div>
-						</div> -->
-						<?php
 					}
 					?>
 					<?php foreach ($pict_array[$row_news->news_id] as $row_array) {
@@ -138,7 +100,8 @@
 								<button type="button" class="btn btn-primary btn-sm update" data-toggle="modal" data-target="#myModal<?php echo $row_array['array_title'];?>">
 									update
 								</button>
-								<a class="delete" href="#">delate</a>
+								<!-- <a class="delete btn btn-primary btn-sm" href="#">delate</a> -->
+								<?php echo anchor('sci_con/delete_updatePicture/'.$row_news->news_id.'/'.$row_array['array_title'],'delete','class ="delete btn btn-primary btn-sm"');?>
 							</div>
 						</div>
 						<!-- Modal -->
@@ -174,35 +137,42 @@
 				</div>
 				<?php
 			}
-			// echo '---------';
-			// print_r($pict_array);
-			// echo '----------';
 			?>
-			<div>
-			</div>
-			<div class="col-xs-12 text-center">
-				<button type="reset" class="btn btn-warning" value="reset">reset</button>
-				<button type="submit" class="btn btn-success" value="save">update</button>
-			</div>
-			<?php echo form_close(); ?>
 		</div>  <!-- --- end class="row col-md-offset-2" --------- -->
 		<hr> 
 	</div>
 </div>
 <!-- end jquery reader upload picture -->
 <!-- /#page-wrapper -->
+
 <script type="text/javascript">
-	$(function() {
-		$('.delete').click(function() {
-			$(this).parent().remove();
-			return false;
+	$(document).ready(function() {
+		$('.fancybox').fancybox();
+		// Change title type, overlay closing speed
+		$(".fancybox-effects-a").fancybox({
+			helpers: {
+				title : {
+					type : 'outside'
+				},
+				overlay : {
+					speedOut : 0
+				}
+			}
 		});
 
-		// $('.update').click(function() {
-		// 	//$(this).parent().alert('name');
-		// 	// console.log($('.update input[type=hidden]').attr('id'));
-		// 	$('#myModal').modal('show');
-		// });
-});
+	});
+
+	function PreviewImage() {  //show picture on click
+
+		var oFReader = new FileReader();
+
+		oFReader.readAsDataURL(document.getElementById("images[]").files[0]);
+
+		oFReader.onload = function (oFREvent) {
+
+			document.getElementById("show_pic").src = oFREvent.target.result;
+
+		};
+	}
 </script>
 <?php $this->load->view('footer');?>

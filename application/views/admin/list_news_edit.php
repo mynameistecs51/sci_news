@@ -38,7 +38,7 @@
 						<?php 	echo $row->news_date; ?>		<!-- //โชว์กลุ่ม -->
 					</td>
 					<td>
-						<?php 
+						<?php
 						echo anchor('sci_con/show_news/'.$row->news_id,"<div class='btn btn-info'>ดูข้อมูล</div>");
 						?>
 					</td>
@@ -56,7 +56,7 @@
 					</td>
 					<hr/>
 				</tr>
-				<?php	
+				<?php
 			}
 			?>
 		</tbody>
