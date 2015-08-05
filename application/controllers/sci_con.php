@@ -212,7 +212,7 @@ private function _upload_files($field='userfile'){
 					);
 
 				$this->load->view('admin/index',$data);
-			}	
+			}
 		}
 
 		function delete_news($news_id){
@@ -229,10 +229,22 @@ private function _upload_files($field='userfile'){
 			redirect('sci_con/','refresh');
 		}
 
-		public function delete_updatePicture($news_id1,$array_pic){
-			echo $news_id1."<br/>";
-			echo $array_pic."<br/>";
+		public function delete_updatePicture($news_id,$array_pic){
+			$query_news = $this->sci_m->get_news_id($news_id);
+			foreach ($query_news as $row_news) {
+				$pic_newsEX = explode(',', $row_news->news_file_upload);
+				unlink('file_upload/pict_news/'.$pic_newsEX[$array_pic]);
+
+				unset($pic_newsEX[$array_pic]);
+
+				$update_arrPic = implode(',', $pic_newsEX);
+				$this->db->where('news_id',$news_id);
+				$this->db->update('news',array('news_file_upload'=>$update_arrPic));
+
+			}
+			redirect('sci_con/edit_news/'.$news_id,'refresh');
 		}
+
 		public function edit_news($news_id){
 			$fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
 
