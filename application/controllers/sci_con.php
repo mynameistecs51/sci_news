@@ -229,7 +229,7 @@ private function _upload_files($field='userfile'){
 			redirect('sci_con/','refresh');
 		}
 
-		public function delete_updatePicture($news_id,$array_pic){
+		public function delete_updatePicture($news_id,$array_pic){  //delete  picture for news id
 			$query_news = $this->sci_m->get_news_id($news_id);
 			foreach ($query_news as $row_news) {
 				$pic_newsEX = explode(',', $row_news->news_file_upload);
@@ -240,8 +240,8 @@ private function _upload_files($field='userfile'){
 				$update_arrPic = implode(',', $pic_newsEX);
 				$this->db->where('news_id',$news_id);
 				$this->db->update('news',array('news_file_upload'=>$update_arrPic));
-
 			}
+
 			redirect('sci_con/edit_news/'.$news_id,'refresh');
 		}
 

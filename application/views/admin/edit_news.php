@@ -62,7 +62,7 @@
 					</div>
 					<label for="input_files" class="col-sm-2">เพิ่มรูปภาพ</label>
 					<div class="col-sm-4 ">
-						<img id="show_pic" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
+						<img id="show_pic[]" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
 						<input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>
 					</div>
 				</div>
@@ -104,6 +104,7 @@
 								<?php echo anchor('sci_con/delete_updatePicture/'.$row_news->news_id.'/'.$row_array['array_title'],'delete','class ="delete btn btn-primary btn-sm"');?>
 							</div>
 						</div>
+
 						<!-- Modal -->
 						<div class="modal fade" id="myModal<?php echo $row_array['array_title'];?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
@@ -113,6 +114,13 @@
 										<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 									</div>
 									<div class="modal-body">
+										<label for="input_files" class="col-sm-2">เพิ่มรูปภาพ</label>
+										<div class="col-sm-4 ">
+											<img id="show_pic[]" name="show_pic"  src="<?php echo base_url().'file_upload/pict_news/'.$row_array['array_pictName'];?>" alt="" style="width:130px; height:130px" />
+											<!-- <img src="<?php echo base_url().'file_upload/pict_news/'.$row_array['array_pictName'];?>"alt=""   id="images[<?php echo $i;?>]"/> -->
+											<br/><br/>
+											<input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>
+										</div>
 										<?php
 
 										echo $row_array['array_title'];
@@ -170,7 +178,7 @@
 
 		oFReader.onload = function (oFREvent) {
 
-			document.getElementById("show_pic").src = oFREvent.target.result;
+			document.getElementById("show_pic[]").src = oFREvent.target.result;
 
 		};
 	}
