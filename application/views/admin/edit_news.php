@@ -46,7 +46,7 @@
 
 	<div class="row  col-md-12 ">
 
-		<div class="row">
+		<div class="row well">
 			<?php echo form_open_multipart('sci_con/edit#/',' class="form-horizontal" role="form" ');?>
 			<?php
 			$pict_array =array();
@@ -55,18 +55,18 @@
 					$pict_array[$row_news->news_id] = array();
 				}
 				?>
-				<div class="form-group col-sm-12">
+				<div class="form-group col-sm-12 ">
 					<label for="input_headnews" class="col-sm-2 control-label">หัวข้อข่าว </label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="input_title" name="input_title" value="<?php echo $row_news->news_title;?>"> <br/>
 					</div>
-					<label for="input_files" class="col-sm-2">เพิ่มรูปภาพ</label>
+					<label for="input_files" class="col-sm-2 ">เพิ่มรูปภาพ</label>
 					<div class="col-sm-4 ">
 						<img id="show_pic[]" name="show_pic" src="<?php echo base_url().'image/pict_admin/no-image.jpg';?>" alt="" style="width:130px; height:130px" /><br/><br/>
 						<input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>
 					</div>
 				</div>
-				<div id="form-group col-sm-12">
+				<div id="form-group col-sm-12  ">
 					<label for="input_detail" class="col-sm-2 control-label">รายละเอียด </label>
 					<div class="col-sm-4">
 						<textarea class="form-control" rows="4" cols="5" id="input_detail" name="input_detail"><?php echo $row_news->news_detail;?></textarea>
@@ -111,44 +111,37 @@
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+										<h4 class="modal-title" id="myModalLabel">อัพเดทรูปภาพ</h4>
 									</div>
 									<div class="modal-body">
-										<label for="input_files" class="col-sm-2">เพิ่มรูปภาพ</label>
-										<div class="col-sm-4 ">
-											<img id="show_pic[]" name="show_pic"  src="<?php echo base_url().'file_upload/pict_news/'.$row_array['array_pictName'];?>" alt="" style="width:130px; height:130px" />
-											<!-- <img src="<?php echo base_url().'file_upload/pict_news/'.$row_array['array_pictName'];?>"alt=""   id="images[<?php echo $i;?>]"/> -->
-											<br/><br/>
-											<input type="file" id="images[]" class="form-control" name="images[]" size="20" onchange="PreviewImage();" multiple=""/>
-										</div>
-										<?php
-
-										echo $row_array['array_title'];
-										echo "<br/>";
-										echo $row_array['array_pictName'];
-										echo "<br/>";
-										echo $this->input->post('name_pict');
-
-										?>
-
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save changes</button>
-									</div>
+										<!-- <div class="col-sm-12 form-group  ">
+									-->
+									<label for="input_files" class="col-sm-3">เพิ่มรูปภาพ</label>
+									<img id="show_pic1" name="show_pic1" src="<?php echo base_url().'file_upload/pict_news/'.$row_array['array_pictName'];?>"  alt="" style="width:130px; height:130px" /><br/><br/>
+									<input type="file" id="images1" class="form-control" name="images1" size="20" onchange="PreviewImage();" multiple=""/>
+									<!-- </div> -->
+									<?php
+									echo $row_array['array_title']."<br/>";
+									echo $row_array['array_pictName'];
+									?>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save changes</button>
 								</div>
 							</div>
-						</div><!-- end modal -->
-						<?php 
-					}
-					?>
-				</div>
-				<?php
-			}
-			?>
-		</div>  <!-- --- end class="row col-md-offset-2" --------- -->
-		<hr> 
-	</div>
+						</div>
+					</div><!-- end modal -->
+					<?php 
+				}
+				?>
+			</div>
+			<?php
+		}
+		?>
+	</div>  <!-- --- end class="row col-md-offset-2" --------- -->
+	<hr> 
+</div>
 </div>
 <!-- end jquery reader upload picture -->
 <!-- /#page-wrapper -->
@@ -174,11 +167,11 @@
 
 		var oFReader = new FileReader();
 
-		oFReader.readAsDataURL(document.getElementById("images[]").files[0]);
+		oFReader.readAsDataURL(document.getElementById("images[]" ,"images1").files[0]);
 
 		oFReader.onload = function (oFREvent) {
 
-			document.getElementById("show_pic[]").src = oFREvent.target.result;
+			document.getElementById("show_pic[]" , "show_pic1").src = oFREvent.target.result;
 
 		};
 	}
