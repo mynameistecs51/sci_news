@@ -32,8 +32,8 @@ class Facebook_model extends CI_model{
         }
 
         $fb_data = array(
-            'me' => $profile,
-            'uid' => $user,
+            'me' =>  $profile,
+            'uid' => '1234',// $user,
             'loginUrl' => $this->facebook->getLoginUrl(
                 array(
                                 'scope' => 'public_profile,email', // app permissions

@@ -1,6 +1,6 @@
 
 RewriteEngine On
-RewriteBase /sci_news/
+RewriteBase /genews/
 
 #RewriteCond $1 !^(index\.php|css|font-awesome-4.1.0|fonts|images|js|robots\.txt)
 RewriteCond %{REQUEST_URI} ^system.*
@@ -10,6 +10,6 @@ RewriteCond %{REQUEST_URI} ^application.*
 RewriteRule ^(.*)$ /index.php?/$1 [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d	
+RewriteCond %{REQUEST_FILENAME} !-d
 #RewriteRule ^(.*)$ index.php/$1 [L]
 RewriteRule .* index.php/$1 [PT,L]
